@@ -6,14 +6,18 @@
 
 body, html {
 	background-color: red;
-     width: 100%;
-     height: 100%;
-}
-
-section {
 	width: 100%;
 	height: 100%;
+}
+
+main {
+	width: 80%;
+	height: 100%;
 	margin: 0 auto;
+	border: 1px solid white;
+	display: flex;
+	flex-direction: row;
+	align-items: space-between;
 }
 
 h1 {
@@ -22,4 +26,33 @@ h1 {
 	text-align: center;
 	font-size: 3rem;
 }
+
+form h2 {
+	margin: 1rem 0 0 0;
+	font-family: "AgencyFB";
+	color: white;
+}
+
+form h4 {
+	font-family: "AgencyFB";
+	color: white;
+}
+
+#formLeft {
+	width: 50%;
+	border: 3px solid green;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+
+}
+
+#movieList {
+	width: 50%;
+	border: 3px solid yellow;
+}
+
+
+
 
