@@ -10,38 +10,52 @@
 	</header>
 	<main>
 		<section id="formLeft">
+			<h2>Add a Movie</h2>
+			<div id="divider1"></div>
 			<form>
-				<h2>Movie Title</h2>
+				<h3>Movie Title</h3>
+				<div id="divider2"></div>
 				<input type="text" name="Movie title" placeholder="Title">
-				<h2>Year</h2>
-				<input type="text" name="yearMade">
-				<h2>Genre</h2>
+				<h3>Premier Year</h3>
+				<div id="divider3"></div>
+				<input type="text" name="yearMade" placeholder="Year">
+				<h3>Genre</h3>
+				<div id="divider4"></div>
 				<h4>Adventure</h4>
-				<input type="checkbox" name="Adventure" placeholder="Adventure">
+				<input class="genre" type="checkbox" name="Adventure">
 				<h4>Action</h4>
-				<input type="checkbox" name="Action">
+				<input class="genre" type="checkbox" name="Action">
 				<h4>Crime</h4>
-				<input type="checkbox" name="Crime">
+				<input class="genre" type="checkbox" name="Crime">
 				<h4>Comedy</h4>
-				<input type="checkbox" name="Comedy">
+				<input class="genre" type="checkbox" name="Comedy">
 				<h4>Drama</h4>
-				<input type="checkbox" name="Drama">
+				<input class="genre" type="checkbox" name="Drama">
 				<h4>Fantasy</h4>
-				<input type="checkbox" name="Fantasy">
+				<input class="genre" type="checkbox" name="Fantasy">
 				<h4>Horror</h4>
-				<input type="checkbox" name="Horror">
+				<input class="genre" type="checkbox" name="Horror">
 				<h4>Mystery</h4>
-				<input type="checkbox" name="Mystery">
+				<input class="genre" type="checkbox" name="Mystery">
 				<h4>Sci-Fi</h4>
-				<input type="checkbox" name="Sci-Fi">
+				<input class="genre" type="checkbox" name="Sci-Fi">
 				<h4>Thriller</h4>
-				<input type="checkbox" name="Thriller">
-				<h2>Rating (1-10)</h2>
-				<input type="number" name="movieRate">
+				<input class="genre" type="checkbox" name="Thriller">
+				<h3>Rate the Movie (1-10)</h3>
+				<div id="divider5"></div>
+				<input class="genre" type="number" name="movieRate" placeholder="Rating">
+				<br>
+				<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
 			</form>
 		</section>
 		<section id="movieList">
-
+			<h2>Movie List</h2>
+			<div id="divider1"></div>
+			<ul>
+				<li>I AM</li>
+				<li>THE BEST</li>
+				<li>AROUND!</li>
+			</ul>
 		</section>
 	</main>
 	<script type="text/javascript" src="js/script.js"></script>

@@ -20,6 +20,37 @@ main {
 	align-items: space-between;
 }
 
+#divider1 {
+	width: 9rem;
+	height: 2px;
+	background-color: white;
+	margin: 0 0 4px 0;
+}
+#divider2 {
+	width:5.7rem;
+	height: 2px;
+	background-color: white;
+	margin: 0 0 4px 0;
+}
+#divider3 {
+	width: 6.7rem;
+	height: 2px;
+	background-color: white;
+	margin: 0 0 4px 0;
+}
+#divider4 {
+	width:3.5rem;
+	height: 2px;
+	background-color: white;
+	margin: 0 0 4px 0;
+}
+#divider5 {
+	width: 11rem;
+	height: 2px;
+	background-color: white;
+	margin: 0 0 4px 0;
+}
+
 h1 {
 	font-family: "AgencyFB";
 	color: white;
@@ -27,7 +58,23 @@ h1 {
 	font-size: 3rem;
 }
 
-form h2 {
+/*Add Movie*/
+
+#formLeft {
+	width: 50%;
+	/*border: 3px solid green;*/
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+h2 {
+	font-family: "AgencyFB";
+	color: white;
+	margin: 2rem 0 0 0;
+}
+
+form h3 {
 	margin: 1rem 0 0 0;
 	font-family: "AgencyFB";
 	color: white;
@@ -38,21 +85,22 @@ form h4 {
 	color: white;
 }
 
-#formLeft {
-	width: 50%;
-	border: 3px solid green;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-
-}
+/*List of Movies */
 
 #movieList {
 	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	border: 3px solid yellow;
+}
+
+ul li {
+	font-family: "AgencyFB";
+	color: white;
+	font-size: 1rem;
 }
 
 
 
-
+/*List of Rated Movies*/
