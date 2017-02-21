@@ -1,10 +1,11 @@
 //Movie Constructor
 function createMovie() {
 
-	const MovieConstructor = function(title, year, genres) {
+	const MovieConstructor = function(title, year, genres, ratings) {
 		this.tile = tile;
 		this.year = year;
 		this.genres = genres;
+		this.ratings = ratings;
 	};
 
 
@@ -66,6 +67,13 @@ const dataBase = (() => {
 		genres: ["Crime", "Drama"],
 		ratings: [9,5,7,9,8,8,7,6,8,5]
 	},
+
+	{
+       title: "Fight Club",
+       year: 1999,
+       genres: ["Drama"],
+       ratings: [9,9,7,8,6,7,8,8,7,6] 
+	}
 
 
 	];
