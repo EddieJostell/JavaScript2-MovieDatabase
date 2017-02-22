@@ -85,7 +85,17 @@ form h4 {
 	color: white;
 }
 
+#btnAdd {
+	margin: 1rem 0 0 0;
+}
+
+/*End Add Movie*/
+
 /*List of Movies */
+
+#btnShow {
+	position: absolute;
+}
 
 #movieList {
 	width: 50%;
@@ -101,6 +111,3 @@ ul li {
 	font-size: 1rem;
 }
 
-
-
-/*List of Rated Movies*/

@@ -13,37 +13,14 @@
 			<h2>Add a Movie</h2>
 			<div id="divider1"></div>
 			<form>
-				<h3>Movie Title</h3>
-				<div id="divider2"></div>
-				<input type="text" name="Movie title" placeholder="Title">
-				<h3>Premier Year</h3>
-				<div id="divider3"></div>
-				<input type="text" name="yearMade" placeholder="Year">
-				<h3>Genre</h3>
-				<div id="divider4"></div>
-				<h4>Adventure</h4>
-				<input class="genre" type="checkbox" name="Adventure">
-				<h4>Action</h4>
-				<input class="genre" type="checkbox" name="Action">
-				<h4>Crime</h4>
-				<input class="genre" type="checkbox" name="Crime">
-				<h4>Comedy</h4>
-				<input class="genre" type="checkbox" name="Comedy">
-				<h4>Drama</h4>
-				<input class="genre" type="checkbox" name="Drama">
-				<h4>Fantasy</h4>
-				<input class="genre" type="checkbox" name="Fantasy">
-				<h4>Horror</h4>
-				<input class="genre" type="checkbox" name="Horror">
-				<h4>Mystery</h4>
-				<input class="genre" type="checkbox" name="Mystery">
-				<h4>Sci-Fi</h4>
-				<input class="genre" type="checkbox" name="Sci-Fi">
-				<h4>Thriller</h4>
-				<input class="genre" type="checkbox" name="Thriller">
-				<h3>Rate the Movie (1-10)</h3>
-				<div id="divider5"></div>
-				<input class="genre" type="number" name="movieRate" placeholder="Rating">
+				<label for="title">Movie Title</label>
+				<input id="title" type="text" name="title">
+				<label for="year">Premier Year</label>
+				<input id="year" type="text" name="year">
+				<label for="genres">Genre</label>
+				<input type="text" name="genres">
+				<label for="ratings">Rate the Movie (1-10)</label>
+				<input id="ratings" type="number" name="ratings" placeholder="Rating" min="0" max="10">
 				<br>
 				<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
 			</form>
@@ -51,13 +28,18 @@
 		<section id="movieList">
 			<h2>Movie List</h2>
 			<div id="divider1"></div>
-			<ul>
-				<li>I AM</li>
-				<li>THE BEST</li>
-				<li>AROUND!</li>
+			<input id="btnShow" type="button" name="btnShowList" value="Movie List">
+			<!-- <input id="btnHighRate" type="button" name="btnHighRate" value="Highest Rated">
+			<input id="btnLowRate" type="button" name="btnLowRate" value="Lowest Rated">
+			<input id="btnMovieRate" type="button" name="btnMovieRate" value="Rate a movie"> -->
+
+			<ul id="movieUL">
+				
 			</ul>
+
 		</section>
 	</main>
-	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/script.js"></script> 
+	<!--	<script type="text/javascript" src="js/script2.js"></script> -->
 </body>
 </html>

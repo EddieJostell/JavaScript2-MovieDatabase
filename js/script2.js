@@ -17,9 +17,9 @@ MovieConstructor.prototype.listMovie = function() {
 
 
 //MovieDatabase Module Pattern
-const Movies = (() => { let MovieDatabase = {
+const MovieDatabase = (() => { 
 
-	movies : [ 
+	let movies = [ 
 	{
 		title: "Assassins Creed",
 		year: 2016,
@@ -45,7 +45,7 @@ const Movies = (() => { let MovieDatabase = {
 		title: "Blade Runner",
 		year: 1982,
 		genres: ["Sci-Fi", "Thriller"],
-		ratings: [9,8,9,7,9,8,9,8,9,8]
+		ratings: [9,8,9,7,9,8,9,8,9]
 	},
 
 	{
@@ -69,74 +69,71 @@ const Movies = (() => { let MovieDatabase = {
 		ratings: [9,9,7,8,6,7,8,8,7,6] 
 	}
 
-	]
-};
+	];
+
 	
 	
 	return {
-		//Show the list of movies in the "database"
 		getMovies: () => {
-			return MovieDatabase.movies;
+			return movies;
 		},
-		//Pushes a created movie to the array
 		pushMovie: (movie) => {
-			MovieDatabase.movies.push(movie);
+			movies.push(movie);
 		},
-		//Collects the title from a movie and displays it
+		pushAnotherMoive: (movie) => {
+			movies.push(movie)
+		},
 		getTitle: (x) => {
-			return MovieDatabase.movies[x].title;
+			return movies[x].title;
 		},
-		//Collects the year from a movie and displays it
 		getYear : (x) => {
-			return MovieDatabase.movies[x].year;
+			return movies[x].year;
 		},
-		//Collects genres
 		getGenres : (x) => {
-			return MovieDatabase.movies[x].genres;
+			return movies[x].genres;
 		},
-		//Collects the ratings for the movie
 		getRate : (x) => {
-			return MovieDatabase.movies[x].ratings;
+			return movies[x].ratings;
 		}
 	};
 
 
 })();
 
-Movies.pushMovie(new MovieConstructor("War Dogs", 2016, "Comedy, Crime, Drama", 9));
-console.log(Movies.getMovies());
-//console.log(Movies.getTitle());
+MovieDatabase.pushMovie(new MovieConstructor("War Dogs", 2016, "Comedy, Crime, Drama", 9));
+MovieDatabase.pushAnotherMoive(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7));
+console.log(MovieDatabase.getMovies());
 
 
-// Function to display the movie in HTML
+
+
 function showMovies() {
-movieUL.innerHTML = "";
+
+
+
+
+/*
 	const displayMovies = () => {
 
 	}
 	  for (var i = 0; i < Movies.getMovies().length; i++) {
-let blockofMovies =
+var filmBlock =
 `<ul id="">
-${i+1}. -----------------------
 <li>Title : ${Movies.getTitle(i)}</li>
 <li>Release Year : ${Movies.getYear(i)} </li>
 <li>Genres : ${Movies.getGenres(i)} </li>
 <li>Rating : ${Movies.getRate(i)} </li>
 </ul>`;
-movieUL.innerHTML += blockofMovies;
+movieUL.innerHTML += filmBlock;
 };
-
+*/
 }
 
-showMovies();
+//showMovies();
 
-
+/*
 function createMovie() {
-	
-
-
-
-	/*
+	//Title
 	var movieInput = document.getElementById("inputTitle").value;
 	var txtMovie = document.createTextNode(movieInput);
 
@@ -150,6 +147,7 @@ li.style.fontFamily = "Agency FB";
 li.style.listStyleType = "none";
 li.style.wordWrap = "break-word";
 li.appendChild(txtMovie);
+li.appendChild(txtYear);
 if (movieInput === "") {
 	alert("You have to write something!");
 }
@@ -164,10 +162,11 @@ else {
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
-*/
+
 
 }
 //createMovie();
+*/
 
 
 
@@ -175,8 +174,7 @@ else {
 
 
 
-
-document.getElementById("btnAdd").addEventListener("click", createMovie);
+//document.getElementById("btnAdd").addEventListener("click", createMovie);
 document.getElementById("btnShow").addEventListener("click", showMovies);
 
 
