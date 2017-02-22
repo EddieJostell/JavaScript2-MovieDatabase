@@ -1,11 +1,11 @@
 //Movie Constructor
+        const MovieConstructor = function(title, year, genres, ratings) {
+         	this.title = title;
+         	this.year = year;
+         	this.genres = [genres];
+         	this.ratings = [ratings];
+         };
 
-const MovieConstructor = function(title, year, genres, ratings) {
-	this.title = title;
-	this.year = year;
-	this.genres = [genres];
-	this.ratings = [ratings];
-};
 
 
 //var wardogs = new MovieConstructor("War Dogs", 2016, ["Comedy", " Crime", " Drama"], 90000);
@@ -17,7 +17,7 @@ MovieConstructor.prototype.listMovie = function() {
 
 
 //MovieDatabase Module Pattern
-const Movies = (() => { let MovieDatabase = {
+const eddieMovieDatabase = (() => { let MovieDatabase = {
 
 	movies : [ 
 	{
@@ -71,16 +71,17 @@ const Movies = (() => { let MovieDatabase = {
 
 	]
 };
-	
-	
-	return {
-		//Show the list of movies in the "database"
-		getMovies: () => {
-			return MovieDatabase.movies;
-		},
+
+
+return {
+       
 		//Pushes a created movie to the array
 		pushMovie: (movie) => {
 			MovieDatabase.movies.push(movie);
+		},
+		//Show the list of movies in the "database"
+		getMovies: () => {
+			return MovieDatabase.movies;
 		},
 		//Collects the title from a movie and displays it
 		getTitle: (x) => {
@@ -97,34 +98,31 @@ const Movies = (() => { let MovieDatabase = {
 		//Collects the ratings for the movie
 		getRate : (x) => {
 			return MovieDatabase.movies[x].ratings;
-		}
+		},
+
 	};
 
 
 })();
 
-Movies.pushMovie(new MovieConstructor("War Dogs", 2016, "Comedy, Crime, Drama", 9));
-console.log(Movies.getMovies());
-//console.log(Movies.getTitle());
+eddieMovieDatabase.pushMovie(new MovieConstructor("War Dogs", 2016, "Comedy, Crime, Drama", 9));
+console.log(eddieMovieDatabase.getMovies());
+console.log(eddieMovieDatabase.getTitle());
 
 
 // Function to display the movie in HTML
 function showMovies() {
-movieUL.innerHTML = "";
-	const displayMovies = () => {
 
-	}
-	  for (var i = 0; i < Movies.getMovies().length; i++) {
-let blockofMovies =
-`<ul id="">
-${i+1}. -----------------------
-<li>Title : ${Movies.getTitle(i)}</li>
-<li>Release Year : ${Movies.getYear(i)} </li>
-<li>Genres : ${Movies.getGenres(i)} </li>
-<li>Rating : ${Movies.getRate(i)} </li>
-</ul>`;
-movieUL.innerHTML += blockofMovies;
-};
+	movieUL.innerHTML = "";
+	for (var i = 0; i < eddieMovieDatabase.getMovies().length; i++) {
+		var blockofMovies = `<div class="movieDIV">
+		<p>Title : ${eddieMovieDatabase.getTitle(i)}</p>
+		<p>Release Year : ${eddieMovieDatabase.getYear(i)} </p>
+		<p>Genres : ${eddieMovieDatabase.getGenres(i)} </p>
+		<p>Rating : ${eddieMovieDatabase.getRate(i)} </p>
+		</div>`;
+		movieUL.innerHTML += blockofMovies;
+	};
 
 }
 
@@ -164,7 +162,7 @@ else {
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
-*/
+    */
 
 }
 //createMovie();

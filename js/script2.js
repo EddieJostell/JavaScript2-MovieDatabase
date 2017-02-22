@@ -1,3 +1,6 @@
+//TEST FILE
+
+
 //Movie Constructor
 
 const MovieConstructor = function(title, year, genres, ratings) {
@@ -17,7 +20,7 @@ MovieConstructor.prototype.listMovie = function() {
 
 
 //MovieDatabase Module Pattern
-const MovieDatabase = (() => { 
+const eddieMovieDatabase = (() => { 
 
 	let movies = [ 
 	{
@@ -80,6 +83,16 @@ const MovieDatabase = (() => {
 		pushMovie: (movie) => {
 			movies.push(movie);
 		},
+		addMovieFromHTML: () => {
+			var addTitle = document.getElementById("title").value;
+			var addYear = document.getElementById("year").value;
+			var addGenres = document. getElementById("genres").value;
+			var addRatings = document.getElementById("ratings").value;
+            var newMovie = eddieMovieDatabase.pushMovie(addTitle, addYear, addGenres, addRatings);
+
+           
+
+		},
 		pushAnotherMoive: (movie) => {
 			movies.push(movie)
 		},
@@ -100,36 +113,29 @@ const MovieDatabase = (() => {
 
 })();
 
-MovieDatabase.pushMovie(new MovieConstructor("War Dogs", 2016, "Comedy, Crime, Drama", 9));
-MovieDatabase.pushAnotherMoive(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7));
-console.log(MovieDatabase.getMovies());
+eddieMovieDatabase.pushMovie(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7));
+//eddieMovieDatabase.pushAnotherMoive(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7)"War Dogs", 2016, "Comedy, Crime, Drama", 9));
+console.log(eddieMovieDatabase.getMovies());
 
 
 
 
 function showMovies() {
 
+	movieUL.innerHTML = "";
+	for (var i = 0; i < eddieMovieDatabase.getMovies().length; i++) {
+		var blockofMovies = `<div class="movieDIV">
+		<p>Title : ${eddieMovieDatabase.getTitle(i)}</p>
+		<p>Release Year : ${eddieMovieDatabase.getYear(i)} </p>
+		<p>Genres : ${eddieMovieDatabase.getGenres(i)} </p>
+		<p>Rating : ${eddieMovieDatabase.getRate(i)} </p>
+		</div>`;
+		movieUL.innerHTML += blockofMovies;
+	};
 
-
-
-/*
-	const displayMovies = () => {
-
-	}
-	  for (var i = 0; i < Movies.getMovies().length; i++) {
-var filmBlock =
-`<ul id="">
-<li>Title : ${Movies.getTitle(i)}</li>
-<li>Release Year : ${Movies.getYear(i)} </li>
-<li>Genres : ${Movies.getGenres(i)} </li>
-<li>Rating : ${Movies.getRate(i)} </li>
-</ul>`;
-movieUL.innerHTML += filmBlock;
-};
-*/
 }
 
-//showMovies();
+showMovies();
 
 /*
 function createMovie() {
@@ -174,7 +180,7 @@ else {
 
 
 
-//document.getElementById("btnAdd").addEventListener("click", createMovie);
+ document.getElementById("btnAdd").addEventListener("click", addMovieFromHTML);
 document.getElementById("btnShow").addEventListener("click", showMovies);
 
 
