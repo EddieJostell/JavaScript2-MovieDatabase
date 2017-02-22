@@ -89,9 +89,6 @@ const eddieMovieDatabase = (() => {
 			var addGenres = document. getElementById("genres").value;
 			var addRatings = document.getElementById("ratings").value;
             var newMovie = eddieMovieDatabase.pushMovie(addTitle, addYear, addGenres, addRatings);
-
-           
-
 		},
 		pushAnotherMoive: (movie) => {
 			movies.push(movie)
