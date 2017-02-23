@@ -1,21 +1,19 @@
-//TEST FILE
-
 
 //Movie Constructor
 
-const MovieConstructor = function(title, year, genres, ratings) {
+/*const MovieConstructor = function(title, year, genres, ratings) {
 	this.title = title;
 	this.year = year;
 	this.genres = [genres];
 	this.ratings = [ratings];
-};
+};*/
 
 
 //var wardogs = new MovieConstructor("War Dogs", 2016, ["Comedy", " Crime", " Drama"], 90000);
 
-MovieConstructor.prototype.listMovie = function() {
+/*MovieConstructor.prototype.listMovie = function() {
 	//console.log("This is " + wardogs.title + " made in " + wardogs.year + " listed as a " + wardogs.genres + " and it has a rating of " + wardogs.ratings);
-}
+}*/
 //MovieConstructor.prototype.listMovie();
 
 
@@ -74,115 +72,128 @@ const eddieMovieDatabase = (() => {
 
 	];
 
-	
-	
 	return {
-		getMovies: () => {
-			return movies;
+		//Movie constructor
+		MovieConstructor: function(title, year, genres, ratings) {
+			this.title = title;
+			this.year = year;
+			this.genres = [genres];
+			this.ratings = [ratings];
 		},
+        // Function that just returns the movies in the array.
+        getMovies: () => {
+        	return movies;
+        },
+		//Pushes movies into the movies array.
 		pushMovie: (movie) => {
 			movies.push(movie);
 		},
+		//Adds a movie typed in from the interface.
 		addMovieFromHTML: () => {
 			var addTitle = document.getElementById("title").value;
 			var addYear = document.getElementById("year").value;
 			var addGenres = document. getElementById("genres").value;
 			var addRatings = document.getElementById("ratings").value;
-            var newMovie = eddieMovieDatabase.pushMovie(addTitle, addYear, addGenres, addRatings);
+
+			var movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, addRatings);
+			eddieMovieDatabase.pushMovie(movieFromHTML);
+			eddieMovieDatabase.showMoviesOnHTML();
+
+			var form = document.getElementById("emdb-form");
+			form.reset();
+			console.log(movies);
+			
 		},
-		pushAnotherMoive: (movie) => {
-			movies.push(movie)
+		//Creates a div with paragraphs per movie rom the array and shows it on the HTML page.
+		showMoviesOnHTML: () => {
+
+			movieUL.innerHTML = "";
+			for (let i = 0; i < movies.length; i++) {
+				var blockofMovies = `<div class="movieDIV">
+				<p>Title : ${movies[i].title}</p>
+				<p>Release Year : ${movies[i].year}  </p>
+				<p>Genres : ${movies[i].genres} </p>
+				<p>Rating : ${eddieMovieDatabase.movieRateCalculator(movies[i].ratings)} </p>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+			};
 		},
-		getTitle: (x) => {
-			return movies[x].title;
+		//Function that will calculate the medium value of all the ratings that the movies have.
+		movieRateCalculator: (movieArray) => {
+			let arrayLength = movieArray.length
+			let totalSum = movieArray;
+			let calcRate = 0;
+			for (var i = 0; i < arrayLength; i++) {
+				calcRate += totalSum[i];
+			}
+			let finalCalcRate = calcRate/arrayLength;
+			let decimalfix = finalCalcRate.toFixed(1)
+			return decimalfix;
 		},
-		getYear : (x) => {
-			return movies[x].year;
+		sortByhighRating: () => {
+			const arrayRating = movies.filter((movieArr, min) => {
+				if (movieArr.ratings > movies[0].ratings){
+
+					return x;
+					eddieMovieDatabase.showMoviesOnHTML();
+				}
+			});
+			
 		},
-		getGenres : (x) => {
-			return movies[x].genres;
+		sortBylowRating: () => {
+
 		},
-		getRate : (x) => {
-			return movies[x].ratings;
+		sortByGenres: () => {
+
 		}
 	};
 
 
 })();
 
-eddieMovieDatabase.pushMovie(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7));
+//eddieMovieDatabase.MovieConstructor();
+//eddieMovieDatabase.MovieConstructor(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7));
+
 //eddieMovieDatabase.pushAnotherMoive(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7)"War Dogs", 2016, "Comedy, Crime, Drama", 9));
 console.log(eddieMovieDatabase.getMovies());
+document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
+eddieMovieDatabase.showMoviesOnHTML();
 
 
 
 
-function showMovies() {
 
-	movieUL.innerHTML = "";
-	for (var i = 0; i < eddieMovieDatabase.getMovies().length; i++) {
-		var blockofMovies = `<div class="movieDIV">
-		<p>Title : ${eddieMovieDatabase.getTitle(i)}</p>
-		<p>Release Year : ${eddieMovieDatabase.getYear(i)} </p>
-		<p>Genres : ${eddieMovieDatabase.getGenres(i)} </p>
-		<p>Rating : ${eddieMovieDatabase.getRate(i)} </p>
-		</div>`;
-		movieUL.innerHTML += blockofMovies;
-	};
+document.getElementById("btnShow").addEventListener("click", eddieMovieDatabase.sortByRating);
 
-}
 
-showMovies();
 
 /*
-function createMovie() {
-	//Title
-	var movieInput = document.getElementById("inputTitle").value;
-	var txtMovie = document.createTextNode(movieInput);
-
-	var yearInput = document.getElementById("inputYear").value;
-	var txtYear = document.createTextNode(yearInput);
-
-//Movie title
-var li = document.createElement("li");
-li.style.color = "white";
-li.style.fontFamily = "Agency FB";
-li.style.listStyleType = "none";
-li.style.wordWrap = "break-word";
-li.appendChild(txtMovie);
-li.appendChild(txtYear);
-if (movieInput === "") {
-	alert("You have to write something!");
-}
-else {
-
-	document.getElementById("movieUL").appendChild(li);
-}
-    //document.getElementById("movieInput").value = "";
-
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode(" ");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-
-
-}
-//createMovie();
-*/
+	movieUL.innerHTML = "";
+			for (var i = 0; i < eddieMovieDatabase.getMovies().length; i++) {
+				var blockofMovies = `<div class="movieDIV">
+				<p>Title : ${eddieMovieDatabase.getTitle(i)}</p>
+				<p>Release Year : ${eddieMovieDatabase.getYear(i)} </p>
+				<p>Genres : ${eddieMovieDatabase.getGenres(i)} </p>
+				<p>Rating : ${eddieMovieDatabase.getRate(i)} </p>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+			};
+		}
+		*/
 
 
 
-
-
-
-
- document.getElementById("btnAdd").addEventListener("click", addMovieFromHTML);
-document.getElementById("btnShow").addEventListener("click", showMovies);
-
-
-
-
+/*const ratingCal = (arr) => {
+	let length = arr.length
+	console.log(length);
+	sum = arr;
+	let calc = 0
+	for (var i = 0; i < arr.length; i++) {
+		calc+=sum[i];
+		console.log(sum);
+		return calc/length;
+	}
+}*/
 
 
 

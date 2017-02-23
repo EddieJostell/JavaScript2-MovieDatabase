@@ -74,18 +74,18 @@ h2 {
 	margin: 2rem 0 0 0;
 }
 
-form {
+#emdb-form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-form label {
+#emdb-form label {
 	font-family: "AgencyFB";
 	color: white;
 }
 
-form h4 {
+#emdb-form h4 {
 	font-family: "AgencyFB";
 	color: white;
 }
