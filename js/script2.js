@@ -118,32 +118,7 @@ const eddieMovieDatabase = (() => {
 				movieUL.innerHTML += blockofMovies;
 			};
 		},
-		/*showHighRatedMovies: () => {
-
-			movieUL.innerHTML = "";
-			for (let i = 0; i < movies.length; i++) {
-				var blockofMovies = `<div class="movieDIV">
-				<p>Title : ${movies[i].title}</p>
-				<p>Release Year : ${movies[i].year}  </p>
-				<p>Genres : ${movies[i].genres} </p>
-				<p>Rating : ${eddieMovieDatabase.movieRateCalculator(movies[i].ratings)} </p>
-				</div>`;
-				movieUL.innerHTML += blockofMovies;
-			};
-		},*/
-	/*	showLowRatedMovies: () => {
-
-			movieUL.innerHTML = "";
-			for (let i = 0; i < movies.length; i++) {
-				var blockofMovies = `<div class="movieDIV">
-				<p>Title : ${movies[i].title}</p>
-				<p>Release Year : ${movies[i].year}  </p>
-				<p>Genres : ${movies[i].genres} </p>
-				<p>Rating : ${eddieMovieDatabase.movieRateCalculator(movies[i].ratings)} </p>
-				</div>`;
-				movieUL.innerHTML += blockofMovies;
-			};
-		},*/
+		
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
 			let arrayLength = movieArray.length
