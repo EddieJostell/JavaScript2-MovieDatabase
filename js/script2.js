@@ -131,10 +131,10 @@ const eddieMovieDatabase = (() => {
 			return decimalfix;
 		},
 		sortByhighRating: () => {
-			const arrayRating = movies.filter((movieArr, min) => {
+			const arrayRating = movies.filter((movieArr) => {
 				if (movieArr.ratings > movies[0].ratings){
 
-					return x;
+					return arrayRating;
 					eddieMovieDatabase.showMoviesOnHTML();
 				}
 			});
@@ -158,12 +158,7 @@ const eddieMovieDatabase = (() => {
 console.log(eddieMovieDatabase.getMovies());
 document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 eddieMovieDatabase.showMoviesOnHTML();
-
-
-
-
-
-document.getElementById("btnShow").addEventListener("click", eddieMovieDatabase.sortByRating);
+document.getElementById("btnShow").addEventListener("click", eddieMovieDatabase.sortByhighRating);
 
 
 
