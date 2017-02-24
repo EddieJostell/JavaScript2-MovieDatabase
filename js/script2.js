@@ -77,7 +77,7 @@ const eddieMovieDatabase = (() => {
 		MovieConstructor: function(title, year, genres, ratings) {
 			this.title = title;
 			this.year = year;
-			this.genres = [genres];
+			this.genres = genres.split(' ');
 			this.ratings = [ratings];
 		},
         // Function that just returns the movies in the array.
@@ -118,6 +118,32 @@ const eddieMovieDatabase = (() => {
 				movieUL.innerHTML += blockofMovies;
 			};
 		},
+		/*showHighRatedMovies: () => {
+
+			movieUL.innerHTML = "";
+			for (let i = 0; i < movies.length; i++) {
+				var blockofMovies = `<div class="movieDIV">
+				<p>Title : ${movies[i].title}</p>
+				<p>Release Year : ${movies[i].year}  </p>
+				<p>Genres : ${movies[i].genres} </p>
+				<p>Rating : ${eddieMovieDatabase.movieRateCalculator(movies[i].ratings)} </p>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+			};
+		},*/
+	/*	showLowRatedMovies: () => {
+
+			movieUL.innerHTML = "";
+			for (let i = 0; i < movies.length; i++) {
+				var blockofMovies = `<div class="movieDIV">
+				<p>Title : ${movies[i].title}</p>
+				<p>Release Year : ${movies[i].year}  </p>
+				<p>Genres : ${movies[i].genres} </p>
+				<p>Rating : ${eddieMovieDatabase.movieRateCalculator(movies[i].ratings)} </p>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+			};
+		},*/
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
 			let arrayLength = movieArray.length
@@ -129,16 +155,18 @@ const eddieMovieDatabase = (() => {
 			let finalCalcRate = calcRate/arrayLength;
 			let decimalfix = finalCalcRate.toFixed(1)
 			return decimalfix;
-		},
+		}, 
 		sortByhighRating: () => {
-			const arrayRating = movies.filter((movieArr) => {
-				if (movieArr.ratings > movies[0].ratings){
 
-					return arrayRating;
-					eddieMovieDatabase.showMoviesOnHTML();
+			var high = movies.reduce(function (prev, value) {
+				if (prev.ratings <= value.ratings) {
+					return prev.title + " with " + prev.ratings + " movie";
+				}
+				else {
+					return value.title + " with " + value.ratings + " people";
 				}
 			});
-			
+			console.log("Movies with highest ratings " + high);
 		},
 		sortBylowRating: () => {
 
