@@ -109,11 +109,12 @@ const eddieMovieDatabase = (() => {
 
 			movieUL.innerHTML = "";
 			for (let i = 0; i < movies.length; i++) {
+				var rating = eddieMovieDatabase.movieRateCalculator(movies[i].ratings);
 				var blockofMovies = `<div class="movieDIV">
 				<p>Title : ${movies[i].title}</p>
 				<p>Release Year : ${movies[i].year}  </p>
 				<p>Genres : ${movies[i].genres} </p>
-				<p>Rating : ${eddieMovieDatabase.movieRateCalculator(movies[i].ratings)} </p>
+				<p>Rating : ${rating} </p>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
 			};
@@ -128,26 +129,46 @@ const eddieMovieDatabase = (() => {
 				calcRate += totalSum[i];
 			}
 			let finalCalcRate = calcRate/arrayLength;
-			let decimalfix = finalCalcRate.toFixed(1)
+			let decimalfix = finalCalcRate.toFixed(1);
 			return decimalfix;
 		}, 
-		sortByhighRating: () => {
+		sortByRating: (sortByHigh) => {
 
-			var high = movies.reduce(function (prev, value) {
-				if (prev.ratings <= value.ratings) {
-					return prev.title + " with " + prev.ratings + " movie";
+			var compareNumbers = function(a, b)  {
+				var r1 = eddieMovieDatabase.movieRateCalculator(a.ratings);
+				var r2 = eddieMovieDatabase.movieRateCalculator(b.ratings);
+				if(r1 < r2) {
+					return - 1;
 				}
-				else {
-					return value.title + " with " + value.ratings + " people";
+				if (r1 > r2) {
+					return 1;
 				}
-			});
-			console.log("Movies with highest ratings " + high);
+				return 0;
+			}
+			if (sortByHigh) {
+				movies = movies.sort(compareNumbers).reverse();
+			}
+			else {
+				movies = movies.sort(compareNumbers);
+			}
+			eddieMovieDatabase.showMoviesOnHTML();   
 		},
-		sortBylowRating: () => {
+		sortByLowRating: () => {
+			eddieMovieDatabase.sortByRating(false);
+
+		},
+		sortByHighRating: () => {
+			eddieMovieDatabase.sortByRating(true);
 
 		},
 		sortByGenres: () => {
-
+			let filteredArray = arrayOfElements
+			.filter((element) => 
+				element.subElements.some((subElement) => subElement.surname === 1))
+			.map(element => {
+                let newElt = Object.assign({}, element); // copies element
+                return newElt.subElements.filter(subElement => subElement.surName === '1');
+            });
 		}
 	};
 
@@ -161,7 +182,9 @@ const eddieMovieDatabase = (() => {
 console.log(eddieMovieDatabase.getMovies());
 document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 eddieMovieDatabase.showMoviesOnHTML();
-document.getElementById("btnShow").addEventListener("click", eddieMovieDatabase.sortByhighRating);
+document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
+document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
+document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
 
 
 

@@ -62,7 +62,15 @@ h1 {
 	font-family: "AgencyFB";
 	color: white;
 	text-align: center;
-	font-size: 3rem;
+	font-size: 2rem;
+}
+
+a {
+	font-family: "AgencyFB";
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	text-decoration: none;
 }
 
 /*Add Movie*/
