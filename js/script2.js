@@ -117,7 +117,23 @@ const eddieMovieDatabase = (() => {
 				<p>Rating : ${rating} </p>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
+				console.log("WORKING?");
 			};
+
+		},
+		showMoviesByGenre: (index) => {
+			console.log(index);
+		    var blockofMovies = '';
+			//movieUL.innerHTML = "";
+			
+				var rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
+				blockofMovies = `<div class="movieDIV">
+				<p>Title : ${movies[index].title}</p>
+				<p>Release Year : ${movies[index].year}  </p>
+				<p>Genres : ${movies[index].genres} </p>
+				<p>Rating : ${rating} </p>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
 		},
 		
 		//Function that will calculate the medium value of all the ratings that the movies have.
@@ -133,10 +149,10 @@ const eddieMovieDatabase = (() => {
 			return decimalfix;
 		}, 
 		sortByRating: (sortByHigh) => {
-
 			var compareNumbers = function(a, b)  {
-				var r1 = eddieMovieDatabase.movieRateCalculator(a.ratings);
-				var r2 = eddieMovieDatabase.movieRateCalculator(b.ratings);
+				var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
+				var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
+				console.log(typeof r1, typeof r2);
 				if(r1 < r2) {
 					return - 1;
 				}
@@ -153,24 +169,43 @@ const eddieMovieDatabase = (() => {
 			}
 			eddieMovieDatabase.showMoviesOnHTML();   
 		},
-		sortByLowRating: () => {
-			eddieMovieDatabase.sortByRating(false);
 
-		},
 		sortByHighRating: () => {
 			eddieMovieDatabase.sortByRating(true);
-
 		},
+
+		sortByLowRating: () => {
+			eddieMovieDatabase.sortByRating(false);
+		},
+		
 		sortByGenres: () => {
-			let filteredArray = arrayOfElements
-			.filter((element) => 
-				element.subElements.some((subElement) => subElement.surname === 1))
+
+			let drop = document.getElementById("dropDownGenre").value;
+			console.log(drop);
+			movieUL.innerHTML = "";
+			for (var i = 0; i < movies.length; i++) {
+				if (movies[i].genres.indexOf(drop) !== - 1) {
+					console.log(movies[i].title);
+					eddieMovieDatabase.showMoviesByGenre(i);
+
+				}
+
+			}
+			
+		/*	let movies = movieGenres.filter((element) => 
+				element.genres.some((subElement) => subElement.genres === 1))
 			.map(element => {
-                let newElt = Object.assign({}, element); // copies element
-                return newElt.subElements.filter(subElement => subElement.surName === '1');
-            });
-		}
-	};
+               // let newElt = Object.assign({}, element); // copies element
+               return newElt.subElements.filter(subElement => subElement.Genres === '1');
+           });*/
+
+       },
+
+       sortByYear: () => {
+
+       }
+
+   };
 
 
 })();
@@ -182,9 +217,10 @@ const eddieMovieDatabase = (() => {
 console.log(eddieMovieDatabase.getMovies());
 document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 eddieMovieDatabase.showMoviesOnHTML();
-document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
+document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
 document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
 document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
+
 
 
 
@@ -222,18 +258,9 @@ const rateMovie = (movie, ratings) => {
 
 }
 
-const getTopRatedMovie = (ratings)  => {
 
-}
-
-const getWorstRatedMovie = () => {
-
-}
 
 const getMoviesThisYear = (year) => {
 
 }
 
-const getMoviesByGenre = (genres) => {
-
-}

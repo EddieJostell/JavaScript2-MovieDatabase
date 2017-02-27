@@ -7,25 +7,76 @@
 <body>
 	<header>
 		<h1>Eduardo's MovieDatabase</h1>
-		<a id="allMovies" href="">All Movies</a>
+		<a id="allMovies" href="#">All Movies</a>
 		<a id="topRated" href="#">Top Rated</a>
 		<a id="lowRated" href="#">Worst Rated</a>
 	</header>
 	<main>
 		<section id="formLeft">
-			<h2>Add a Movie</h2>
-			<div id="divider1"></div>
-			<form id="emdb-form">
-				<label for="title">Movie Title</label>
-				<input id="title" type="text" name="title">
-				<label for="year">Premier Year</label>
-				<input id="year" type="text" name="year">
-				<label for="genres">Genre</label>
-				<input id="genres" type="text" name="genres">
-				<label for="ratings">Rate the Movie (1-10)</label>
-				<input id="ratings" type="number" name="ratings" min="0" max="10">
-				<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
-			</form>
+
+			<section class="sec-form">
+				<h2>Add a Movie</h2>
+				<div id="divider1"></div>
+				<form id="emdb-form">
+					<label for="title">Movie Title</label>
+					<input id="title" type="text" name="title">
+					<label for="year">Premier Year</label>
+					<input id="year" type="text" name="year">
+					<label for="genres">Genre</label>
+					<input id="genres" type="text" name="genres">
+					<label for="ratings">Rate the Movie (1-10)</label>
+					<input id="ratings" type="number" name="ratings" min="0" max="10" maxlength="4">
+					<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
+				</form>
+			</section>
+
+			<section class="sectionSORT">
+				<h2>Sort by Genre & Year</h2>
+				<div id="divider2"></div>
+				<label for="txtGenre">Genre</label>
+
+				<select id="dropDownGenre">
+					<option value="">- Genres -</option>
+					<option value="Action">Action</option>
+					<option value="Adventure">Adventure</option>
+					<option value="Crime">Crime</option>
+					<option value="Comedy">Comedy</option>
+					<option value="Drama">Drama</option>
+					<option value="Fantasy">Fantasy</option>
+					<option value="Mystery">Mystery</option>
+					<option value="Sci-Fi">Sci-Fi</option>
+					<option value="Thriller">Thriller</option>
+				</select>
+				
+				<label for="sortYear">Year</label>
+				<input id="sortYear" type="number" name="sortYear" min="0" max="2017">
+				<input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear">
+				
+			</section>
+
+			<div id="editList">
+				<h2>Edit Movies</h2>
+				<div id="divider1"></div>
+				<form id="editForm">
+					<label for="edTitle">Title</label>
+					<select id="editTitle">
+
+					</select>
+					<input id="btnTitle" type="button" value="Edit Title" name="btnTitle">
+					<label for="edYear">Premier Year</label>
+					<input id="edYear" type="text" name="year">
+					<input id="btnYear" type="button" value="Edit Year" name="btnYear">
+					<label for="addGenres">Add Genre</label>
+					<input id="addGenres" type="text" name="addGenres">
+					<input id="btnAddGenre" type="button" value="Edit Genre" name="btnAddGenre">
+					<label for="delGenres">Remove Genre</label>
+					<input id="delGenres" type="text" name="delGenres">
+					<input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre">
+					<label for="edRatings">Movie Rating</label>
+					<input id="edRratings" type="number" name="ratings" min="0" max="2017" maxlength="4">
+					<input id="btnRate" type="button" value="Edit Rating" name="btnRate">
+				</form>
+			</div>
 		</section>
 		<section id="movieList">
 			<h2>Movie List</h2>
@@ -33,7 +84,9 @@
 			<ul id="movieUL">
 				
 			</ul>
-
+			<ul id="sortedUL">
+				
+			</ul>
 		</section>
 	</main>
 	<!-- <script type="text/javascript" src="js/script.js"></script> -->
