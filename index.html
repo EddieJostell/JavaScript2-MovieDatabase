@@ -7,7 +7,7 @@
 <body>
 	<header>
 		<h1>Eduardo's MovieDatabase</h1>
-		<a id="allMovies" href="#">All Movies</a>
+		<a id="allMovies" href="#" onclick="eddieMovieDatabase.showMoviesOnHTML()">All Movies</a>
 		<a id="topRated" href="#">Top Rated</a>
 		<a id="lowRated" href="#">Worst Rated</a>
 	</header>
@@ -22,21 +22,33 @@
 					<input id="title" type="text" name="title" autofocus="true">
 					<label for="year">Premier Year</label>
 					<input id="year" type="text" name="year">
-					<label for="genres">Genre(s)</label>
-					<input id="genres" type="text" name="genres">
-					<select id="genres" multiple>
-					<option value="">- Select Genre(s) -</option>
-					<option value="Action">Action</option>
-					<option value="Adventure">Adventure</option>
-					<option value="Crime">Crime</option>
-					<option value="Comedy">Comedy</option>
-					<option value="Drama">Drama</option>
-					<option value="Fantasy">Fantasy</option>
-					<option value="Mystery">Mystery</option>
-					<option value="Romance">Romance</option>
-					<option value="Sci-Fi">Sci-Fi</option>
-					<option value="Thriller">Thriller</option>
-				</select>
+					
+						<label for="genres">Genre(s)</label>
+						<input id="genres" type="text" name="genres">
+						<label>- Select Genre(s) -</label>
+						<div id="divider1"></div>
+							<label>Action</label>
+							<input type="checkbox" value="Action"></input>
+							<label>Adventure</label>
+							<input type="checkbox" value="Adventure"></input>
+							<label>Crime</label>
+							<input type="checkbox" value="Crime"></input>
+							<label>Comedy</label>
+							<input type="checkbox" value="Comedy"></input>
+							<label>Drama</label>
+							<input type="checkbox" value="Drama"></input>
+							<label>Fantasy</label>
+							<input type="checkbox" value="Fantasy"></input>
+							<label>Mystery</label>
+							<input type="checkbox" value="Mystery"></input>
+							<label>Romance</label>
+							<input type="checkbox" value="Romance"></input>
+							<label>Sci-Fi</label>
+							<input type="checkbox" value="Sci-Fi"></input>
+							<label>Thriller</label>
+							<input type="checkbox" value="Thriller"></input>
+					
+					
 					<label for="ratings">Rate the Movie (1-10)</label>
 					<input id="ratings" type="number" name="ratings" min="0" max="10" maxlength="4">
 					<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
@@ -96,9 +108,6 @@
 			<h2>Movie List</h2>
 			<div id="divider1"></div>
 			<ul id="movieUL">
-				
-			</ul>
-			<ul id="sortedUL">
 				
 			</ul>
 		</section>

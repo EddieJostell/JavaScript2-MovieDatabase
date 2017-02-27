@@ -77,7 +77,7 @@ const eddieMovieDatabase = (() => {
 		MovieConstructor: function(title, year, genres, ratings) {
 			this.title = title;
 			this.year = year;
-			this.genres = genres.split(' ');
+			this.genres = [genres];
 			this.ratings = [ratings];
 		},
         // Function that just returns the movies in the array.
@@ -93,6 +93,7 @@ const eddieMovieDatabase = (() => {
 			var addTitle = document.getElementById("title").value;
 			var addYear = document.getElementById("year").value;
 			var addGenres = document.getElementById("genres").value;
+			//var dropGenres = document.getElementById("dropgenres").value;
 			var addRatings = document.getElementById("ratings").value;
           
 			var movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, addRatings);
@@ -164,6 +165,7 @@ const eddieMovieDatabase = (() => {
 			return decimalfix;
 		}, 
 		sortByRating: (sortByHigh) => {
+			
 			var compareNumbers = function(a, b)  {
 				var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
 				var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
@@ -177,6 +179,7 @@ const eddieMovieDatabase = (() => {
 				return 0;
 			}
 			if (sortByHigh) {
+				
 				movies = movies.sort(compareNumbers).reverse();
 			}
 			else {
@@ -233,6 +236,7 @@ const eddieMovieDatabase = (() => {
 console.log(eddieMovieDatabase.getMovies());
 document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 eddieMovieDatabase.showMoviesOnHTML();
+document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
 document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
 document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
 document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);

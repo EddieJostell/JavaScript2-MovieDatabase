@@ -132,6 +132,11 @@ h2 {
 	margin-top: 1rem;
 }
 
+
+input {
+	display-inline: block;
+}
+
 /*End Add genres*/
 
 /*End Add Movie*/
