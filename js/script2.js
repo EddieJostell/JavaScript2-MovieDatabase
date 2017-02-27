@@ -135,6 +135,21 @@ const eddieMovieDatabase = (() => {
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
 		},
+		showMoviesByYear: (year) => {
+			console.log(year + " I AM THE BEST");
+		    var blockofMovies = '';
+			//movieUL.innerHTML = "";
+			
+				var rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
+				blockofMovies = `<div class="movieDIV">
+				<p>Title : ${movies[year].title}</p>
+				<p>Release Year : ${movies[year].year}  </p>
+				<p>Genres : ${movies[year].genres} </p>
+				<p>Rating : ${rating} </p>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+			
+		},
 		
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
@@ -191,18 +206,19 @@ const eddieMovieDatabase = (() => {
 				}
 
 			}
-			
-		/*	let movies = movieGenres.filter((element) => 
-				element.genres.some((subElement) => subElement.genres === 1))
-			.map(element => {
-               // let newElt = Object.assign({}, element); // copies element
-               return newElt.subElements.filter(subElement => subElement.Genres === '1');
-           });*/
 
        },
 
        sortByYear: () => {
-
+                 let txtYear = document.getElementById("sortYear").value;
+                 console.log(txtYear + " AND THEN???");
+                 movieUL.innerHTML = "";
+                 for (var i = 0; i < movies.length; i++) {
+                 	if (parseInt(txtYear) === movies[i].year) {
+                        console.log(txtYear + " Thats your number?");
+                        eddieMovieDatabase.showMoviesByYear(i);
+                 	}
+                 }
        }
 
    };
@@ -218,6 +234,7 @@ console.log(eddieMovieDatabase.getMovies());
 document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 eddieMovieDatabase.showMoviesOnHTML();
 document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
+document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
 document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
 document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
 
