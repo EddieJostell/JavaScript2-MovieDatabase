@@ -19,11 +19,24 @@
 				<div id="divider1"></div>
 				<form id="emdb-form">
 					<label for="title">Movie Title</label>
-					<input id="title" type="text" name="title">
+					<input id="title" type="text" name="title" autofocus="true">
 					<label for="year">Premier Year</label>
 					<input id="year" type="text" name="year">
-					<label for="genres">Genre</label>
+					<label for="genres">Genre(s)</label>
 					<input id="genres" type="text" name="genres">
+					<select id="genres" multiple>
+					<option value="">- Select Genre(s) -</option>
+					<option value="Action">Action</option>
+					<option value="Adventure">Adventure</option>
+					<option value="Crime">Crime</option>
+					<option value="Comedy">Comedy</option>
+					<option value="Drama">Drama</option>
+					<option value="Fantasy">Fantasy</option>
+					<option value="Mystery">Mystery</option>
+					<option value="Romance">Romance</option>
+					<option value="Sci-Fi">Sci-Fi</option>
+					<option value="Thriller">Thriller</option>
+				</select>
 					<label for="ratings">Rate the Movie (1-10)</label>
 					<input id="ratings" type="number" name="ratings" min="0" max="10" maxlength="4">
 					<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
@@ -36,7 +49,7 @@
 				<label for="txtGenre">Genre</label>
 
 				<select id="dropDownGenre">
-					<option value="">- Genres -</option>
+					<option value="">- Genre(s) -</option>
 					<option value="Action">Action</option>
 					<option value="Adventure">Adventure</option>
 					<option value="Crime">Crime</option>
@@ -44,6 +57,7 @@
 					<option value="Drama">Drama</option>
 					<option value="Fantasy">Fantasy</option>
 					<option value="Mystery">Mystery</option>
+					<option value="Romance">Romance</option>
 					<option value="Sci-Fi">Sci-Fi</option>
 					<option value="Thriller">Thriller</option>
 				</select>
@@ -62,14 +76,14 @@
 					<select id="editTitle">
 
 					</select>
-					<input id="btnTitle" type="button" value="Edit Title" name="btnTitle">
+					<!-- <input id="btnTitle" type="button" value="Edit Title" name="btnTitle"> -->
 					<label for="edYear">Premier Year</label>
 					<input id="edYear" type="text" name="year">
 					<input id="btnYear" type="button" value="Edit Year" name="btnYear">
-					<label for="addGenres">Add Genre</label>
+					<label for="addGenres">Add Genre(s)</label>
 					<input id="addGenres" type="text" name="addGenres">
 					<input id="btnAddGenre" type="button" value="Edit Genre" name="btnAddGenre">
-					<label for="delGenres">Remove Genre</label>
+					<label for="delGenres">Remove Genre(s)</label>
 					<input id="delGenres" type="text" name="delGenres">
 					<input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre">
 					<label for="edRatings">Movie Rating</label>

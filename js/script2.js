@@ -92,9 +92,9 @@ const eddieMovieDatabase = (() => {
 		addMovieFromHTML: () => {
 			var addTitle = document.getElementById("title").value;
 			var addYear = document.getElementById("year").value;
-			var addGenres = document. getElementById("genres").value;
+			var addGenres = document.getElementById("genres").value;
 			var addRatings = document.getElementById("ratings").value;
-
+          
 			var movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, addRatings);
 			eddieMovieDatabase.pushMovie(movieFromHTML);
 			eddieMovieDatabase.showMoviesOnHTML();
@@ -102,6 +102,7 @@ const eddieMovieDatabase = (() => {
 			var form = document.getElementById("emdb-form");
 			form.reset();
 			console.log(movies);
+			console.log(addGenres);
 			
 		},
 		//Creates a div with paragraphs per movie rom the array and shows it on the HTML page.
@@ -113,11 +114,10 @@ const eddieMovieDatabase = (() => {
 				var blockofMovies = `<div class="movieDIV">
 				<p>Title : ${movies[i].title}</p>
 				<p>Release Year : ${movies[i].year}  </p>
-				<p>Genres : ${movies[i].genres} </p>
+				<p>Genre(s) : ${movies[i].genres} </p>
 				<p>Rating : ${rating} </p>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
-				console.log("WORKING?");
 			};
 
 		},
@@ -130,7 +130,7 @@ const eddieMovieDatabase = (() => {
 				blockofMovies = `<div class="movieDIV">
 				<p>Title : ${movies[index].title}</p>
 				<p>Release Year : ${movies[index].year}  </p>
-				<p>Genres : ${movies[index].genres} </p>
+				<p>Genre(s) : ${movies[index].genres} </p>
 				<p>Rating : ${rating} </p>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
@@ -144,7 +144,7 @@ const eddieMovieDatabase = (() => {
 				blockofMovies = `<div class="movieDIV">
 				<p>Title : ${movies[year].title}</p>
 				<p>Release Year : ${movies[year].year}  </p>
-				<p>Genres : ${movies[year].genres} </p>
+				<p>Genre(s) : ${movies[year].genres} </p>
 				<p>Rating : ${rating} </p>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
