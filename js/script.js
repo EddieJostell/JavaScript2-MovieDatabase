@@ -170,6 +170,33 @@ else {
 //createMovie();
 
 
+/*
+	movieUL.innerHTML = "";
+			for (var i = 0; i < eddieMovieDatabase.getMovies().length; i++) {
+				var blockofMovies = `<div class="movieDIV">
+				<p>Title : ${eddieMovieDatabase.getTitle(i)}</p>
+				<p>Release Year : ${eddieMovieDatabase.getYear(i)} </p>
+				<p>Genres : ${eddieMovieDatabase.getGenres(i)} </p>
+				<p>Rating : ${eddieMovieDatabase.getRate(i)} </p>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+			};
+		}
+		*/
+
+
+
+/*const ratingCal = (arr) => {
+	let length = arr.length
+	console.log(length);
+	sum = arr;
+	let calc = 0
+	for (var i = 0; i < arr.length; i++) {
+		calc+=sum[i];
+		console.log(sum);
+		return calc/length;
+	}
+}*/
 
 
 
@@ -204,3 +231,21 @@ const getMoviesThisYear = (year) => {
 const getMoviesByGenre = (genres) => {
 
 }
+
+
+//Movie Constructor
+
+/*const MovieConstructor = function(title, year, genres, ratings) {
+	this.title = title;
+	this.year = year;
+	this.genres = [genres];
+	this.ratings = [ratings];
+};*/
+
+
+//var wardogs = new MovieConstructor("War Dogs", 2016, ["Comedy", " Crime", " Drama"], 90000);
+
+/*MovieConstructor.prototype.listMovie = function() {
+	//console.log("This is " + wardogs.title + " made in " + wardogs.year + " listed as a " + wardogs.genres + " and it has a rating of " + wardogs.ratings);
+}*/
+//MovieConstructor.prototype.listMovie();

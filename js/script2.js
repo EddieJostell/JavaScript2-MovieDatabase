@@ -1,23 +1,8 @@
-
-//Movie Constructor
-
-/*const MovieConstructor = function(title, year, genres, ratings) {
-	this.title = title;
-	this.year = year;
-	this.genres = [genres];
-	this.ratings = [ratings];
-};*/
-
-
-//var wardogs = new MovieConstructor("War Dogs", 2016, ["Comedy", " Crime", " Drama"], 90000);
-
-/*MovieConstructor.prototype.listMovie = function() {
-	//console.log("This is " + wardogs.title + " made in " + wardogs.year + " listed as a " + wardogs.genres + " and it has a rating of " + wardogs.ratings);
-}*/
-//MovieConstructor.prototype.listMovie();
-
-
 //MovieDatabase Module Pattern
+//Valde att använda Module Pattern för att allt är så 
+//smart organiserat och samlat på samma stället innnanför modulen.
+//Vilket gör att inget är deklarerat i global scope.
+//Väldigt enkelt att koppla funktionerna man skapar till modulen.
 const eddieMovieDatabase = (() => { 
 
 	let movies = [ 
@@ -74,6 +59,12 @@ const eddieMovieDatabase = (() => {
 		genres: ["Crime", "Drama"],
 		ratings: [9,5,7,9,8,8,7,6,8,5]
 	},
+	{
+        title: "Titanic",
+        year: 1997,
+        genres: ["Drama", "Romance"],
+        ratings: [7,6,8,5,7]
+	}, 
 
 	{
 		title: "Fight Club",
@@ -119,6 +110,11 @@ const eddieMovieDatabase = (() => {
 
 	return {
 		//Movie constructor
+		//Använde mig av Constructor pattern på min constructor för att 
+		//skapa filmerna (objekten).
+		//Den skapar objekt som då har prototyper, (javascripts sätt för att ärva egenskaper och metoder).
+		//Valde detta pattern istället för factory pattern för att jag inte har 
+		//behövt manipulera några prototyper direkt. 
 		MovieConstructor: function(title, year, genres, ratings) {
 			this.title = title;
 			this.year = year;
@@ -129,33 +125,31 @@ const eddieMovieDatabase = (() => {
         getMovies: () => {
         	return movies;
         },
-		//Pushes movies into the movies array.
+		//Pushes movies into the movies array when created by the interface.
 		pushMovie: (movie) => {
 			movies.push(movie);
 		},
 		//Adds a movie typed in from the interface.
 		addMovieFromHTML: () => {
-			var addTitle = document.getElementById("title").value;
-			var addYear = document.getElementById("year").value;
-			var addGenres = document.getElementById("genres").value;
-			var addRatings = document.getElementById("ratings").value;
-			if (addRatings > 10) {
-				addRatings = 10;
+			let addTitle = document.getElementById("title").value;
+			let addYear = document.getElementById("year").value;
+			let addGenres = document.getElementById("genres").value;
+			let addRatings = document.getElementById("ratings").value;
+            let intRating = parseInt(addRatings);
+			if (intRating > 10) {
+				intRating = 10;
 			}
-			if (addRatings < 0) {
-				addRatings = 0;
+			if (intRating < 0) {
+				intRating = 0;
 			}
 
-			var movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, addRatings);
+			let movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, intRating);
 			eddieMovieDatabase.pushMovie(movieFromHTML);
 			eddieMovieDatabase.showMoviesOnHTML();
 			eddieMovieDatabase.populateEditDropDown();
 
-			var form = document.getElementById("emdb-form");
+			let form = document.getElementById("emdb-form");
 			form.reset();
-			console.log(movies);
-			console.log(addGenres);
-			
 		},
 		//Creates a div with paragraphs per movie from the array and shows it on the HTML page.
 		showMoviesOnHTML: () => {
@@ -190,10 +184,10 @@ const eddieMovieDatabase = (() => {
 		},
 		//Function that prints out on the DOM a specific movie that was searched for by genre.
 		showMoviesByGenre: (index) => {
-			var blockofMovies = '';
+			let blockofMovies = '';
 			//movieUL.innerHTML = "";
 			
-			var rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
+			let rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
 			blockofMovies = `<div class="movieDIV">
 			<p>Title : ${movies[index].title}</p>
 			<p>Release Year : ${movies[index].year}  </p>
@@ -204,10 +198,10 @@ const eddieMovieDatabase = (() => {
 		},
 		//Function that prints out on the DOM a specific movie that was searched for by year.
 		showMoviesByYear: (year) => {
-			var blockofMovies = '';
+			let blockofMovies = '';
 			//movieUL.innerHTML = "";
 			
-			var rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
+			let rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
 			blockofMovies = `<div class="movieDIV">
 			<p>Title : ${movies[year].title}</p>
 			<p>Release Year : ${movies[year].year}  </p>
@@ -277,7 +271,7 @@ const eddieMovieDatabase = (() => {
 				}
 			}
 		},
-
+        //Function that lets you sort movies by what year the movie had premiered.
 		sortByYear: () => {
 			let txtYear = document.getElementById("sortYear").value;
 			let intYear = parseInt(txtYear);
@@ -293,7 +287,7 @@ const eddieMovieDatabase = (() => {
 			let dropDownMovies = eddieMovieDatabase.getMovies();
 			let edit = document.getElementById("selectedMovieTitle");
 			for (var i = 0; i < dropDownMovies.length; i++) {
-				var opt = document.createElement("option");
+				let opt = document.createElement("option");
 				opt.innerHTML = dropDownMovies[i].title;
 				opt.value = dropDownMovies[i].title;
 				edit.appendChild(opt);
@@ -372,33 +366,6 @@ document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.
 
 
 
-/*
-	movieUL.innerHTML = "";
-			for (var i = 0; i < eddieMovieDatabase.getMovies().length; i++) {
-				var blockofMovies = `<div class="movieDIV">
-				<p>Title : ${eddieMovieDatabase.getTitle(i)}</p>
-				<p>Release Year : ${eddieMovieDatabase.getYear(i)} </p>
-				<p>Genres : ${eddieMovieDatabase.getGenres(i)} </p>
-				<p>Rating : ${eddieMovieDatabase.getRate(i)} </p>
-				</div>`;
-				movieUL.innerHTML += blockofMovies;
-			};
-		}
-		*/
-
-
-
-/*const ratingCal = (arr) => {
-	let length = arr.length
-	console.log(length);
-	sum = arr;
-	let calc = 0
-	for (var i = 0; i < arr.length; i++) {
-		calc+=sum[i];
-		console.log(sum);
-		return calc/length;
-	}
-}*/
 
 
 
