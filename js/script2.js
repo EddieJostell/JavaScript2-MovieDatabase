@@ -280,6 +280,7 @@ const eddieMovieDatabase = (() => {
 
 		sortByYear: () => {
 			let txtYear = document.getElementById("sortYear").value;
+			let intYear = parseInt(txtYear);
 			movieUL.innerHTML = "";
 			for (var i = 0; i < movies.length; i++) {
 				if (intYear == movies[i].year) {
