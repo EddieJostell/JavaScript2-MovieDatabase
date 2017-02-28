@@ -149,7 +149,7 @@ const eddieMovieDatabase = (() => {
 			var movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, addRatings);
 			eddieMovieDatabase.pushMovie(movieFromHTML);
 			eddieMovieDatabase.showMoviesOnHTML();
-			eddieMovieDatabase.editMovies();
+			eddieMovieDatabase.populateEditDropDown();
 
 			var form = document.getElementById("emdb-form");
 			form.reset();
@@ -301,29 +301,27 @@ const eddieMovieDatabase = (() => {
 		},
 		addMovieGenre: () => {
 			let selectedMovie = document.getElementById("selectedMovieTitle").value;
-			console.log(selectedMovie);
-			let genreToAdd = document.getElementById("addGenres").value;
-            let theMovie;
+			let genreToAdd = document.getElementById("dropDownEditGenre").value;
+			let theMovie;
 			for (var i = 0; i < movies.length; i++) {
-			    if (selectedMovie === movies[i].title) {
+				if (selectedMovie === movies[i].title) {
 					theMovie = movies[i];
 
 				}
 			}
 			for (let i = 0; i < theMovie.genres.length; i++) {
-            if (genreToAdd === theMovie.genres[i]){
-                return;
-            }
-            
-        }
+				if (genreToAdd === theMovie.genres[i]){
+					return;
+				}
+
+			}
 			theMovie.genres.push(genreToAdd);
 			eddieMovieDatabase.showMoviesOnHTML();
 			
 		},
 		removeMovieGenre: () => {
 			let selectedMovie = document.getElementById("selectedMovieTitle").value;
-			console.log(selectedMovie);
-			let genreToRemove = document.getElementById("delGenres").value;
+			let genreToRemove = document.getElementById("dropDownEditGenre").value;
 			let currentMovie;
 			for (var i = 0; i < movies.length; i++) {
 				if (selectedMovie === movies[i].title) {
@@ -338,7 +336,16 @@ const eddieMovieDatabase = (() => {
 			eddieMovieDatabase.showMoviesOnHTML();
 		},
 		rateMovie: () => {
-
+			let selectedMovie = document.getElementById("selectedMovieTitle").value;
+			let addedRate = document.getElementById("edRatings").value;
+			let intRate = parseInt(addedRate);
+			for (var i = 0; i < movies.length; i++) {
+				if (selectedMovie === movies[i].title) {
+					movies[i].ratings.push(intRate);
+				}
+			}
+             
+             eddieMovieDatabase.showMoviesOnHTML();
 		}
 
 	};
@@ -347,10 +354,10 @@ const eddieMovieDatabase = (() => {
 })();
 
 
-console.log(eddieMovieDatabase.getMovies());
-document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
+//console.log(eddieMovieDatabase.getMovies());
 eddieMovieDatabase.showMoviesOnHTML();
 eddieMovieDatabase.populateEditDropDown();
+document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
 document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
 document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
@@ -358,6 +365,7 @@ document.getElementById("topRated").addEventListener("click", eddieMovieDatabase
 document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
 document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
 document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
+document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.rateMovie);
 
 
 

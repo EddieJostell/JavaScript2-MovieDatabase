@@ -15,7 +15,7 @@
 		<section id="formLeft">
 
 			<section class="sec-form">
-			<!-- Add Movie Form -->
+				<!-- Add Movie Form -->
 				<h2>Add a Movie</h2>
 				<div id="divider1"></div>
 				<form id="emdb-form">
@@ -24,31 +24,9 @@
 					<label for="year">Premier Year</label>
 					<input id="year" type="text" name="year">
 					
-						<label for="genres">Genre(s)</label>
-						<input id="genres" type="text" name="genres">
-						<label>- Select Genre(s) -</label>
-						<div id="divider1"></div>
-							<label>Action</label>
-							<input type="checkbox" value="Action"></input>
-							<label>Adventure</label>
-							<input type="checkbox" value="Adventure"></input>
-							<label>Crime</label>
-							<input type="checkbox" value="Crime"></input>
-							<label>Comedy</label>
-							<input type="checkbox" value="Comedy"></input>
-							<label>Drama</label>
-							<input type="checkbox" value="Drama"></input>
-							<label>Fantasy</label>
-							<input type="checkbox" value="Fantasy"></input>
-							<label>Mystery</label>
-							<input type="checkbox" value="Mystery"></input>
-							<label>Romance</label>
-							<input type="checkbox" value="Romance"></input>
-							<label>Sci-Fi</label>
-							<input type="checkbox" value="Sci-Fi"></input>
-							<label>Thriller</label>
-							<input type="checkbox" value="Thriller"></input>
-					
+					<label for="genres">Genre(s)</label>
+					<input id="genres" type="text" name="genres"> 
+			
 					
 					<label for="ratings">Rate the Movie (1-10)</label>
 					<input id="ratings" type="number" name="ratings" min="0" max="10" maxlength="4">
@@ -80,24 +58,49 @@
 				<input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear">
 				
 			</section>
-              <!-- Edit Form -->
+			<!-- Edit Form -->
 			<div id="editList">
 				<h2>Edit Movies</h2>
 				<div id="divider1"></div>
 				<form id="editForm">
-					<label for="selectedMovieTitle">Title</label>
 					<select id="selectedMovieTitle">
 
 					</select>
-					<!-- <input id="btnTitle" type="button" value="Edit Title" name="btnTitle"> -->
-					<label for="addGenres">Add Genre(s)</label>
-					<input id="addGenres" type="text" name="addGenres">
+					<label>Edit Genre</label>
+					<select id="dropDownEditGenre">
+						<option value="">- Genre(s) -</option>
+						<option value="Action">Action</option>
+						<option value="Adventure">Adventure</option>
+						<option value="Crime">Crime</option>
+						<option value="Comedy">Comedy</option>
+						<option value="Drama">Drama</option>
+						<option value="Fantasy">Fantasy</option>
+						<option value="Mystery">Mystery</option>
+						<option value="Romance">Romance</option>
+						<option value="Sci-Fi">Sci-Fi</option>
+						<option value="Thriller">Thriller</option>
+					</select>
+					<!-- <label for="addGenres">Add Genre(s)</label>
+					<input id="addGenres" type="text" name="addGenres">-->
 					<input id="btnAddGenre" type="button" value="Add Genre" name="btnAddGenre">
-					<label for="delGenres">Remove Genre(s)</label>
-					<input id="delGenres" type="text" name="delGenres">
-					<input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre">
+					<!--<label for="delGenres">Remove Genre(s)</label>
+					<input id="delGenres" type="text" name="delGenres">-->
+					<input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre"> 
 					<label for="edRatings">Movie Rating</label>
-					<input id="edRratings" type="number" name="ratings" min="0" max="2017" maxlength="4">
+					<!-- <input id="edRatings" type="number" name="ratings" min="0" max="2017" maxlength="4"> -->
+					<select id="edRatings">
+						<option>- Rate the Movie -</option>
+						<option value="10">10</option>
+						<option value="9">9</option>
+						<option value="8">8</option>
+						<option value="7">7</option>
+						<option value="6">6</option>
+						<option value="5">5</option>
+						<option value="4">4</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
+					</select>
 					<input id="btnRate" type="button" value="Rate the movie" name="btnRate">
 				</form>
 			</div>
