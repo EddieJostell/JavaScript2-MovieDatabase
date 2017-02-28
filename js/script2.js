@@ -48,6 +48,18 @@ const eddieMovieDatabase = (() => {
 		genres: ["Sci-Fi", "Thriller"],
 		ratings: [9,8,9,7,9,8,9,8,9]
 	},
+	{
+		title: "The Fifth Element",
+		year: 1995,
+		genres: ["Action", "Adventure", "Sci-Fi"],
+		ratings: [9,9,9,9,9,9,10,8]
+	},
+	{
+		title: "Poltergeist",
+		year: 1982,
+		genres: ["Fantasy", "Horror", "Thriller"],
+		ratings: [9,9,9,9,7,8,6]
+	},
 
 	{
 		title: "The Big Lebowski",
@@ -68,7 +80,34 @@ const eddieMovieDatabase = (() => {
 		year: 1999,
 		genres: ["Drama"],
 		ratings: [9,9,7,8,6,7,8,8,7,6] 
-	}
+	},
+	{
+		title: 'The Exorcist',
+		year: 1973,
+		genres: ['Horror','Thriller'],
+		ratings:[7,8,8,9]
+	},
+	{
+		title: 'Casino Royale',
+		year: 2006,
+		genres: ['Action','Adventure','Thriller'],
+		ratings: [6,4,8,9,9,9,9]
+	},
+
+	{
+		title:'Django Unchained',
+		year:2012,
+		genres:['Drama','Western'],
+		ratings:[7,8,9]
+
+	},
+	{
+		title: "Fury",
+		year: 2014,
+		genres: ["Action", "Drama", "War"],
+		ratings: [8,9,9,6,7,8,9,8]
+	},
+
 
 	];
 
@@ -77,7 +116,7 @@ const eddieMovieDatabase = (() => {
 		MovieConstructor: function(title, year, genres, ratings) {
 			this.title = title;
 			this.year = year;
-			this.genres = [genres];
+			this.genres = genres.split(' ');
 			this.ratings = [ratings];
 		},
         // Function that just returns the movies in the array.
@@ -93,9 +132,14 @@ const eddieMovieDatabase = (() => {
 			var addTitle = document.getElementById("title").value;
 			var addYear = document.getElementById("year").value;
 			var addGenres = document.getElementById("genres").value;
-			//var dropGenres = document.getElementById("dropgenres").value;
 			var addRatings = document.getElementById("ratings").value;
-          
+			if (addRatings > 10) {
+				addRatings = 10;
+			}
+			if (addRatings < 0) {
+				addRatings = 0;
+			}
+
 			var movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, addRatings);
 			eddieMovieDatabase.pushMovie(movieFromHTML);
 			eddieMovieDatabase.showMoviesOnHTML();
@@ -106,13 +150,13 @@ const eddieMovieDatabase = (() => {
 			console.log(addGenres);
 			
 		},
-		//Creates a div with paragraphs per movie rom the array and shows it on the HTML page.
+		//Creates a div with paragraphs per movie from the array and shows it on the HTML page.
 		showMoviesOnHTML: () => {
 
 			movieUL.innerHTML = "";
 			for (let i = 0; i < movies.length; i++) {
-				var rating = eddieMovieDatabase.movieRateCalculator(movies[i].ratings);
-				var blockofMovies = `<div class="movieDIV">
+				let rating = eddieMovieDatabase.movieRateCalculator(movies[i].ratings);
+				let blockofMovies = `<div class="movieDIV">
 				<p>Title : ${movies[i].title}</p>
 				<p>Release Year : ${movies[i].year}  </p>
 				<p>Genre(s) : ${movies[i].genres} </p>
@@ -122,33 +166,48 @@ const eddieMovieDatabase = (() => {
 			};
 
 		},
-		showMoviesByGenre: (index) => {
-			console.log(index);
-		    var blockofMovies = '';
-			//movieUL.innerHTML = "";
-			
-				var rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
-				blockofMovies = `<div class="movieDIV">
-				<p>Title : ${movies[index].title}</p>
-				<p>Release Year : ${movies[index].year}  </p>
-				<p>Genre(s) : ${movies[index].genres} </p>
+			showSortedMoviesOnHTML: (x) => {
+
+			movieUL.innerHTML = "";
+			for (let i = 0; i < x.length; i++) {
+				let rating = eddieMovieDatabase.movieRateCalculator(x[i].ratings);
+				let blockofMovies = `<div class="movieDIV">
+				<p>Title : ${x[i].title}</p>
+				<p>Release Year : ${x[i].year}  </p>
+				<p>Genre(s) : ${x[i].genres} </p>
 				<p>Rating : ${rating} </p>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
+			};
+
 		},
-		showMoviesByYear: (year) => {
-			console.log(year + " I AM THE BEST");
-		    var blockofMovies = '';
+		//Function that prints out on the DOM a specific movie that was searched for by genre.
+		showMoviesByGenre: (index) => {
+			var blockofMovies = '';
 			//movieUL.innerHTML = "";
 			
-				var rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
-				blockofMovies = `<div class="movieDIV">
-				<p>Title : ${movies[year].title}</p>
-				<p>Release Year : ${movies[year].year}  </p>
-				<p>Genre(s) : ${movies[year].genres} </p>
-				<p>Rating : ${rating} </p>
-				</div>`;
-				movieUL.innerHTML += blockofMovies;
+			var rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
+			blockofMovies = `<div class="movieDIV">
+			<p>Title : ${movies[index].title}</p>
+			<p>Release Year : ${movies[index].year}  </p>
+			<p>Genre(s) : ${movies[index].genres} </p>
+			<p>Rating : ${rating} </p>
+			</div>`;
+			movieUL.innerHTML += blockofMovies;
+		},
+		//Function that prints out on the DOM a specific movie that was searched for by year.
+		showMoviesByYear: (year) => {
+			var blockofMovies = '';
+			//movieUL.innerHTML = "";
+			
+			var rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
+			blockofMovies = `<div class="movieDIV">
+			<p>Title : ${movies[year].title}</p>
+			<p>Release Year : ${movies[year].year}  </p>
+			<p>Genre(s) : ${movies[year].genres} </p>
+			<p>Rating : ${rating} </p>
+			</div>`;
+			movieUL.innerHTML += blockofMovies;
 			
 		},
 		
@@ -164,12 +223,17 @@ const eddieMovieDatabase = (() => {
 			let decimalfix = finalCalcRate.toFixed(1);
 			return decimalfix;
 		}, 
+		//Function that compares movieratings and lets you sort movies by highest and lowest rating.
 		sortByRating: (sortByHigh) => {
-			
-			var compareNumbers = function(a, b)  {
+			let sortedArray = [];
+             
+             for (var i = 0; i < movies.length; i++) {
+             	sortedArray.push(movies[i]);
+             }
+
+			let compareNumbers = (a, b) =>  {
 				var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
 				var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
-				console.log(typeof r1, typeof r2);
 				if(r1 < r2) {
 					return - 1;
 				}
@@ -180,51 +244,58 @@ const eddieMovieDatabase = (() => {
 			}
 			if (sortByHigh) {
 				
-				movies = movies.sort(compareNumbers).reverse();
+				sortedArray.sort(compareNumbers).reverse();
 			}
 			else {
-				movies = movies.sort(compareNumbers);
+				sortedArray.sort(compareNumbers);
 			}
-			eddieMovieDatabase.showMoviesOnHTML();   
+			return eddieMovieDatabase.showSortedMoviesOnHTML(sortedArray);   
 		},
+          //Function that checks if you chosen to sort by Highest rating or not.
+          sortByHighRating: () => {
+          	eddieMovieDatabase.sortByRating(true);
+          },
+         //Function that checks if you chosen to sort by Lowest rating or not.
+         sortByLowRating: () => {
+         	eddieMovieDatabase.sortByRating(false);
+         },
 
-		sortByHighRating: () => {
-			eddieMovieDatabase.sortByRating(true);
-		},
-
-		sortByLowRating: () => {
-			eddieMovieDatabase.sortByRating(false);
-		},
-		
+		//Function that lets you sort movies by what genres they are classed as.
 		sortByGenres: () => {
-
 			let drop = document.getElementById("dropDownGenre").value;
-			console.log(drop);
 			movieUL.innerHTML = "";
 			for (var i = 0; i < movies.length; i++) {
 				if (movies[i].genres.indexOf(drop) !== - 1) {
-					console.log(movies[i].title);
 					eddieMovieDatabase.showMoviesByGenre(i);
-
 				}
-
 			}
+		},
 
-       },
+		sortByYear: () => {
+			let txtYear = document.getElementById("sortYear").value;
+			movieUL.innerHTML = "";
+			for (var i = 0; i < movies.length; i++) {
+				if (intYear == movies[i].year) {
+					eddieMovieDatabase.showMoviesByYear(i);
+				}
+			}
+		},
+		editMovies: () => {
+            let movieArray = eddieMovieDatabase.getMovies();
+            for (var i = 0; i < movies.length; i++) {
+            	
+            }
+            let edit = document.getElementById("editTitle");
+            for (var i = 0; i < movieArray.length; i++) {
+            	var opt = document.createElement("option");
+            	opt.innerHTML = movieArray[i];
+            	opt.value = movieArray[i];
+            	edit.appendChild(opt);
+            }
 
-       sortByYear: () => {
-                 let txtYear = document.getElementById("sortYear").value;
-                 console.log(txtYear + " AND THEN???");
-                 movieUL.innerHTML = "";
-                 for (var i = 0; i < movies.length; i++) {
-                 	if (parseInt(txtYear) === movies[i].year) {
-                        console.log(txtYear + " Thats your number?");
-                        eddieMovieDatabase.showMoviesByYear(i);
-                 	}
-                 }
-       }
+		}
 
-   };
+	};
 
 
 })();
@@ -236,6 +307,7 @@ const eddieMovieDatabase = (() => {
 console.log(eddieMovieDatabase.getMovies());
 document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 eddieMovieDatabase.showMoviesOnHTML();
+eddieMovieDatabase.editMovies();
 document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
 document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
 document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
@@ -281,7 +353,4 @@ const rateMovie = (movie, ratings) => {
 
 
 
-const getMoviesThisYear = (year) => {
-
-}
 
