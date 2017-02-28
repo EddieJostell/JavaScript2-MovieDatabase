@@ -95,10 +95,10 @@ const eddieMovieDatabase = (() => {
 	},
 
 	{
-		title:'Django Unchained',
-		year:2012,
-		genres:['Drama','Western'],
-		ratings:[7,8,9]
+		title:'Star Wars: Episode VI - Return of the Jedi',
+		year: 1983,
+		genres:["Action", "Adventure", "Fantasy"],
+		ratings:[9,10,10,10,9]
 
 	},
 	{
@@ -107,6 +107,12 @@ const eddieMovieDatabase = (() => {
 		genres: ["Action", "Drama", "War"],
 		ratings: [8,9,9,6,7,8,9,8]
 	},
+	{
+		title: "Gladiator",
+		year: 2000,
+		genres: ["Action", "Adventure", "Drama"],
+		ratings: [10,10,10,10,10,10,10]
+	}
 
 
 	];
@@ -143,6 +149,7 @@ const eddieMovieDatabase = (() => {
 			var movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, addRatings);
 			eddieMovieDatabase.pushMovie(movieFromHTML);
 			eddieMovieDatabase.showMoviesOnHTML();
+			eddieMovieDatabase.editMovies();
 
 			var form = document.getElementById("emdb-form");
 			form.reset();
@@ -166,7 +173,7 @@ const eddieMovieDatabase = (() => {
 			};
 
 		},
-			showSortedMoviesOnHTML: (x) => {
+		showSortedMoviesOnHTML: (x) => {
 
 			movieUL.innerHTML = "";
 			for (let i = 0; i < x.length; i++) {
@@ -226,10 +233,10 @@ const eddieMovieDatabase = (() => {
 		//Function that compares movieratings and lets you sort movies by highest and lowest rating.
 		sortByRating: (sortByHigh) => {
 			let sortedArray = [];
-             
-             for (var i = 0; i < movies.length; i++) {
-             	sortedArray.push(movies[i]);
-             }
+
+			for (var i = 0; i < movies.length; i++) {
+				sortedArray.push(movies[i]);
+			}
 
 			let compareNumbers = (a, b) =>  {
 				var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
@@ -280,18 +287,57 @@ const eddieMovieDatabase = (() => {
 				}
 			}
 		},
-		editMovies: () => {
-            let movieArray = eddieMovieDatabase.getMovies();
-            for (var i = 0; i < movies.length; i++) {
-            	
+		populateEditDropDown: () => {
+			
+			let dropDownMovies = eddieMovieDatabase.getMovies();
+			let edit = document.getElementById("selectedMovieTitle");
+			for (var i = 0; i < dropDownMovies.length; i++) {
+				var opt = document.createElement("option");
+				opt.innerHTML = dropDownMovies[i].title;
+				opt.value = dropDownMovies[i].title;
+				edit.appendChild(opt);
+			}
+
+		},
+		addMovieGenre: () => {
+			let selectedMovie = document.getElementById("selectedMovieTitle").value;
+			console.log(selectedMovie);
+			let genreToAdd = document.getElementById("addGenres").value;
+            let theMovie;
+			for (var i = 0; i < movies.length; i++) {
+			    if (selectedMovie === movies[i].title) {
+					theMovie = movies[i];
+
+				}
+			}
+			for (let i = 0; i < theMovie.genres.length; i++) {
+            if (genreToAdd === theMovie.genres[i]){
+                return;
             }
-            let edit = document.getElementById("editTitle");
-            for (var i = 0; i < movieArray.length; i++) {
-            	var opt = document.createElement("option");
-            	opt.innerHTML = movieArray[i];
-            	opt.value = movieArray[i];
-            	edit.appendChild(opt);
-            }
+            
+        }
+			theMovie.genres.push(genreToAdd);
+			eddieMovieDatabase.showMoviesOnHTML();
+			
+		},
+		removeMovieGenre: () => {
+			let selectedMovie = document.getElementById("selectedMovieTitle").value;
+			console.log(selectedMovie);
+			let genreToRemove = document.getElementById("delGenres").value;
+			let currentMovie;
+			for (var i = 0; i < movies.length; i++) {
+				if (selectedMovie === movies[i].title) {
+					currentMovie = movies[i];
+				}
+			}
+			for (var x = 0; x < currentMovie.genres.length; x++) {
+				if (genreToRemove === currentMovie.genres[x]) {
+					currentMovie.genres.splice(x,1);
+				}
+			}
+			eddieMovieDatabase.showMoviesOnHTML();
+		},
+		rateMovie: () => {
 
 		}
 
@@ -300,19 +346,19 @@ const eddieMovieDatabase = (() => {
 
 })();
 
-//eddieMovieDatabase.MovieConstructor();
-//eddieMovieDatabase.MovieConstructor(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7));
 
-//eddieMovieDatabase.pushAnotherMoive(new MovieConstructor("Rambo: First Blood", 1982, " Action, Adventure, Drama", 7)"War Dogs", 2016, "Comedy, Crime, Drama", 9));
 console.log(eddieMovieDatabase.getMovies());
 document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
 eddieMovieDatabase.showMoviesOnHTML();
-eddieMovieDatabase.editMovies();
+eddieMovieDatabase.populateEditDropDown();
 document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
 document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
 document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
 document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
 document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
+document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
+document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
+
 
 
 
@@ -347,9 +393,7 @@ document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase
 
 
 
-const rateMovie = (movie, ratings) => {
 
-}
 
 
 

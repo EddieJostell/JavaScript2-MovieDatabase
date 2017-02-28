@@ -15,6 +15,7 @@
 		<section id="formLeft">
 
 			<section class="sec-form">
+			<!-- Add Movie Form -->
 				<h2>Add a Movie</h2>
 				<div id="divider1"></div>
 				<form id="emdb-form">
@@ -79,28 +80,25 @@
 				<input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear">
 				
 			</section>
-
+              <!-- Edit Form -->
 			<div id="editList">
 				<h2>Edit Movies</h2>
 				<div id="divider1"></div>
 				<form id="editForm">
-					<label for="edTitle">Title</label>
-					<select id="editTitle">
+					<label for="selectedMovieTitle">Title</label>
+					<select id="selectedMovieTitle">
 
 					</select>
 					<!-- <input id="btnTitle" type="button" value="Edit Title" name="btnTitle"> -->
-					<label for="edYear">Premier Year</label>
-					<input id="edYear" type="text" name="year">
-					<input id="btnYear" type="button" value="Edit Year" name="btnYear">
 					<label for="addGenres">Add Genre(s)</label>
 					<input id="addGenres" type="text" name="addGenres">
-					<input id="btnAddGenre" type="button" value="Edit Genre" name="btnAddGenre">
+					<input id="btnAddGenre" type="button" value="Add Genre" name="btnAddGenre">
 					<label for="delGenres">Remove Genre(s)</label>
 					<input id="delGenres" type="text" name="delGenres">
 					<input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre">
 					<label for="edRatings">Movie Rating</label>
 					<input id="edRratings" type="number" name="ratings" min="0" max="2017" maxlength="4">
-					<input id="btnRate" type="button" value="Edit Rating" name="btnRate">
+					<input id="btnRate" type="button" value="Rate the movie" name="btnRate">
 				</form>
 			</div>
 		</section>
