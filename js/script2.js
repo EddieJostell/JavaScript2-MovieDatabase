@@ -60,10 +60,10 @@ const eddieMovieDatabase = (() => {
 		ratings: [9,5,7,9,8,8,7,6,8,5]
 	},
 	{
-        title: "Titanic",
-        year: 1997,
-        genres: ["Drama", "Romance"],
-        ratings: [7,6,8,5,7]
+		title: "Titanic",
+		year: 1997,
+		genres: ["Drama", "Romance"],
+		ratings: [7,6,8,5,7]
 	}, 
 
 	{
@@ -135,21 +135,31 @@ const eddieMovieDatabase = (() => {
 			let addYear = document.getElementById("year").value;
 			let addGenres = document.getElementById("genres").value;
 			let addRatings = document.getElementById("ratings").value;
-            let intRating = parseInt(addRatings);
+			let intRating = parseInt(addRatings);
+			//If-statement to make sure no extreme high or low numbers go into the rating input.
 			if (intRating > 10) {
 				intRating = 10;
 			}
 			if (intRating < 0) {
 				intRating = 0;
 			}
+			//If-statement that makes sure that a movie doesnt get added to the array
+			//if you leave a field empty.
+			if (addTitle === "" || addYear === "" || addGenres === "" || addRatings === "") {
+				alert("All fields are required!");
+				return;
+			}
+			else {
+				let movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, intRating);
+				eddieMovieDatabase.pushMovie(movieFromHTML);
+				eddieMovieDatabase.showMoviesOnHTML();
+				eddieMovieDatabase.populateEditDropDown();
 
-			let movieFromHTML = new eddieMovieDatabase.MovieConstructor(addTitle, addYear, addGenres, intRating);
-			eddieMovieDatabase.pushMovie(movieFromHTML);
-			eddieMovieDatabase.showMoviesOnHTML();
-			eddieMovieDatabase.populateEditDropDown();
+				let form = document.getElementById("emdb-form");
+				form.reset();
+			}
 
-			let form = document.getElementById("emdb-form");
-			form.reset();
+			
 		},
 		//Creates a div with paragraphs per movie from the array and shows it on the HTML page.
 		showMoviesOnHTML: () => {
@@ -211,6 +221,14 @@ const eddieMovieDatabase = (() => {
 			movieUL.innerHTML += blockofMovies;
 			
 		},
+		//Function that will run if no movie with the year searched for is found in the database.
+/*		noMovieByThisYear: () => {
+			let blockofMovies = '';
+		    movieUL.innerHTML = "";
+			
+			blockofMovies = `<h2>Sorry no movie with this premiere year is listed in the database</h2>`;
+			movieUL.innerHTML = blockofMovies;
+		},*/
 		
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
@@ -231,27 +249,29 @@ const eddieMovieDatabase = (() => {
 			for (var i = 0; i < movies.length; i++) {
 				sortedArray.push(movies[i]);
 			}
+              //Compare function that look at the calculated median rating value of the first movie in the array 
+              //and compare it against the value of the second movie.
+              //Depending
+              let compareNumbers = (a, b) =>  {
+              	var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
+              	var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
+              	if(r1 < r2) {
+              		return - 1;
+              	}
+              	if (r1 > r2) {
+              		return 1;
+              	}
+              	return 0;
+              }
+              if (sortByHigh) {
 
-			let compareNumbers = (a, b) =>  {
-				var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
-				var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
-				if(r1 < r2) {
-					return - 1;
-				}
-				if (r1 > r2) {
-					return 1;
-				}
-				return 0;
-			}
-			if (sortByHigh) {
-				
-				sortedArray.sort(compareNumbers).reverse();
-			}
-			else {
-				sortedArray.sort(compareNumbers);
-			}
-			return eddieMovieDatabase.showSortedMoviesOnHTML(sortedArray);   
-		},
+              	sortedArray.sort(compareNumbers).reverse();
+              }
+              else {
+              	sortedArray.sort(compareNumbers);
+              }
+              return eddieMovieDatabase.showSortedMoviesOnHTML(sortedArray);   
+          },
           //Function that checks if you chosen to sort by Highest rating or not.
           sortByHighRating: () => {
           	eddieMovieDatabase.sortByRating(true);
@@ -264,88 +284,110 @@ const eddieMovieDatabase = (() => {
 		//Function that lets you sort movies by what genres they are classed as.
 		sortByGenres: () => {
 			let drop = document.getElementById("dropDownGenre").value;
-			movieUL.innerHTML = "";
-			for (var i = 0; i < movies.length; i++) {
-				if (movies[i].genres.indexOf(drop) !== - 1) {
-					eddieMovieDatabase.showMoviesByGenre(i);
+			if (drop === "") {
+				return;
+			}
+			else {
+				movieUL.innerHTML = "";
+				for (var i = 0; i < movies.length; i++) {
+					if (movies[i].genres.indexOf(drop) !== - 1) {
+						eddieMovieDatabase.showMoviesByGenre(i);
+					}
 				}
 			}
+			
 		},
         //Function that lets you sort movies by what year the movie had premiered.
-		sortByYear: () => {
-			let txtYear = document.getElementById("sortYear").value;
-			let intYear = parseInt(txtYear);
-			movieUL.innerHTML = "";
-			for (var i = 0; i < movies.length; i++) {
-				if (intYear == movies[i].year) {
-					eddieMovieDatabase.showMoviesByYear(i);
-				}
-			}
-		},
-		populateEditDropDown: () => {
-			
-			let dropDownMovies = eddieMovieDatabase.getMovies();
-			let edit = document.getElementById("selectedMovieTitle");
-			for (var i = 0; i < dropDownMovies.length; i++) {
-				let opt = document.createElement("option");
-				opt.innerHTML = dropDownMovies[i].title;
-				opt.value = dropDownMovies[i].title;
-				edit.appendChild(opt);
-			}
+        sortByYear: () => {
+        	let txtYear = document.getElementById("sortYear").value;
+        	let intYear = parseInt(txtYear);
+        	if (txtYear === "") {
+        		alert("Please enter a year!");
+        		return;
+        	}
+        	movieUL.innerHTML = "";
+        	for (var i = 0; i < movies.length; i++) {
+        		if (intYear == movies[i].year) {
+        			eddieMovieDatabase.showMoviesByYear(i);
+        		}
+        		/*else if (intYear !== movies[i].year) {
+        			eddieMovieDatabase.noMovieByThisYear(i);
+        		} */
+        	}
+        },
+        //Function that populates the dropdown menu on the edit movie interface.
+        populateEditDropDown: () => {
+        	let dropDownMovies = eddieMovieDatabase.getMovies();
+        	let edit = document.getElementById("selectedMovieTitle");
+        	for (var i = 0; i < dropDownMovies.length; i++) {
+        		let opt = document.createElement("option");
+        		opt.innerHTML = dropDownMovies[i].title;
+        		opt.value = dropDownMovies[i].title;
+        		edit.appendChild(opt);
+        	}
 
-		},
-		addMovieGenre: () => {
-			let selectedMovie = document.getElementById("selectedMovieTitle").value;
-			let genreToAdd = document.getElementById("dropDownEditGenre").value;
-			let theMovie;
-			for (var i = 0; i < movies.length; i++) {
-				if (selectedMovie === movies[i].title) {
-					theMovie = movies[i];
+        },
+        addMovieGenre: () => {
+        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
+        	let genreToAdd = document.getElementById("dropDownEditGenre").value;
+        	let theMovie;
+        	for (var i = 0; i < movies.length; i++) {
+        		if (selectedMovie === movies[i].title) {
+        			theMovie = movies[i];
+        		}
+        	}
+        	for (let i = 0; i < theMovie.genres.length; i++) {
+        		if (genreToAdd === theMovie.genres[i]){
+        			return;
+        		}
+        	}
+        	//If no genre has been choosen nothing will happen.
+        	//Else add chosen genre to the movie.
+        	if (genreToAdd === "") {
+        		alert("Please choose a genre!");
+        		return;
+        	}
+        	else {
+        		theMovie.genres.push(genreToAdd);
+        		eddieMovieDatabase.showMoviesOnHTML();
+        	}
 
-				}
-			}
-			for (let i = 0; i < theMovie.genres.length; i++) {
-				if (genreToAdd === theMovie.genres[i]){
-					return;
-				}
-
-			}
-			theMovie.genres.push(genreToAdd);
-			eddieMovieDatabase.showMoviesOnHTML();
-			
-		},
-		removeMovieGenre: () => {
-			let selectedMovie = document.getElementById("selectedMovieTitle").value;
-			let genreToRemove = document.getElementById("dropDownEditGenre").value;
-			let currentMovie;
-			for (var i = 0; i < movies.length; i++) {
-				if (selectedMovie === movies[i].title) {
-					currentMovie = movies[i];
-				}
-			}
-			for (var x = 0; x < currentMovie.genres.length; x++) {
-				if (genreToRemove === currentMovie.genres[x]) {
-					currentMovie.genres.splice(x,1);
-				}
-			}
-			eddieMovieDatabase.showMoviesOnHTML();
-		},
-		rateMovie: () => {
-			let selectedMovie = document.getElementById("selectedMovieTitle").value;
-			let addedRate = document.getElementById("edRatings").value;
-			let intRate = parseInt(addedRate);
-			for (var i = 0; i < movies.length; i++) {
-				if (selectedMovie === movies[i].title) {
-					movies[i].ratings.push(intRate);
-				}
-			}
-             
-             eddieMovieDatabase.showMoviesOnHTML();
-		}
-
-	};
-
-
+        },
+        removeMovieGenre: () => {
+        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
+        	let genreToRemove = document.getElementById("dropDownEditGenre").value;
+        	let currentMovie;
+        	for (var i = 0; i < movies.length; i++) {
+        		if (selectedMovie === movies[i].title) {
+        			currentMovie = movies[i];
+        		}
+        	}
+        	for (var x = 0; x < currentMovie.genres.length; x++) {
+        		if (genreToRemove === currentMovie.genres[x]) {
+        			currentMovie.genres.splice(x,1);
+        		}
+        	}
+        	eddieMovieDatabase.showMoviesOnHTML();
+        },
+        //Function that allowes you to rate a movie in the database.
+        rateMovie: () => {
+        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
+        	let addedRate = document.getElementById("edRatings").value;
+        	let intRate = parseInt(addedRate);
+        	if (addedRate === "") {
+        		alert("Please choose a number!");
+        		return;
+        	}
+        	else {
+        		for (var i = 0; i < movies.length; i++) {
+        			if (selectedMovie === movies[i].title) {
+        				movies[i].ratings.push(intRate);
+        			}
+        		}
+        	}
+        	eddieMovieDatabase.showMoviesOnHTML();
+        }
+    };
 })();
 
 
