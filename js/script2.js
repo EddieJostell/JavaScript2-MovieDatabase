@@ -222,7 +222,7 @@ const eddieMovieDatabase = (() => {
 			
 		},
 		//Function that will run if no movie with the year searched for is found in the database.
-/*		noMovieByThisYear: () => {
+	/*noMovieByThisYear: () => {
 			let blockofMovies = '';
 		    movieUL.innerHTML = "";
 			
@@ -311,8 +311,8 @@ const eddieMovieDatabase = (() => {
         			eddieMovieDatabase.showMoviesByYear(i);
         		}
         		/*else if (intYear !== movies[i].year) {
-        			eddieMovieDatabase.noMovieByThisYear(i);
-        		} */
+        			eddieMovieDatabase.noMovieByThisYear();
+        		}*/
         	}
         },
         //Function that populates the dropdown menu on the edit movie interface.
@@ -386,23 +386,32 @@ const eddieMovieDatabase = (() => {
         		}
         	}
         	eddieMovieDatabase.showMoviesOnHTML();
-        }
+        },
+        registerEventHandlers: () => {
+        	document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
+        	document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
+        	document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
+        	document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
+        	document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
+        	document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
+        	document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
+        	document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
+        	document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.rateMovie);
+        },
+        initialize: (() => {
+        	document.addEventListener('DOMContentLoaded', () => {
+        		eddieMovieDatabase.showMoviesOnHTML();
+        		eddieMovieDatabase.populateEditDropDown();
+        		eddieMovieDatabase.registerEventHandlers();
+        	});
+        })()
+
     };
 })();
 
 
 //console.log(eddieMovieDatabase.getMovies());
-eddieMovieDatabase.showMoviesOnHTML();
-eddieMovieDatabase.populateEditDropDown();
-document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
-document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
-document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
-document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
-document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
-document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
-document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
-document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
-document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.rateMovie);
+
 
 
 
