@@ -19,15 +19,14 @@
 				<h2>Add a Movie</h2>
 				<div id="divider1"></div>
 				<form id="emdb-form">
-					<label for="title">Movie Title</label>
+					<label for="title">Title</label>
 					<input id="title" type="text" name="title" autofocus="true" maxlength="50">
 					<label for="year">Premier Year</label>
 					<input id="year" type="text" name="year">
-					
+					<label for="cover">Poster URL</label>
+					<input id="cover" type="text" name="cover">
 					<label for="genres">Genre(s)</label>
-					<input id="genres" type="text" name="genres"> 
-			
-					
+					<input id="genres" type="text" name="genres">
 					<label for="ratings">Rate the Movie (1-10)</label>
 					<input id="ratings" type="number" name="ratings" min="0" max="10" maxlength="4">
 					<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
@@ -66,7 +65,7 @@
 					<select id="selectedMovieTitle">
 
 					</select>
-					<label>Edit Genre</label>
+					<label>Genre</label>
 					<select id="dropDownEditGenre">
 						<option value="">- Genre(s) -</option>
 						<option value="Action">Action</option>
@@ -106,8 +105,8 @@
 			</div>
 		</section>
 		<section id="movieList">
-			<h2>Movie List</h2>
-			<div id="divider1"></div>
+			<!-- <h2>Movie List</h2>
+			<div id="divider1"></div> -->
 			<ul id="movieUL">
 				
 			</ul>
