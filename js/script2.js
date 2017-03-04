@@ -256,11 +256,7 @@ const eddieMovieDatabase = (() => {
 		},
 		//Function that will run if no movie with the year searched for is found in the database.
 	/*noMovieByThisYear: () => {
-			let blockofMovies = '';
-		    movieUL.innerHTML = "";
-			
-			blockofMovies = `<h2>Sorry no movie with this premiere year is listed in the database</h2>`;
-			movieUL.innerHTML = blockofMovies;
+			alert("Sorry no movie with that year currently in the database");
 		},*/
 		
 		//Function that will calculate the medium value of all the ratings that the movies have.
@@ -289,7 +285,9 @@ const eddieMovieDatabase = (() => {
               //If the boolean sortByHigh is not triggered indicating that the user want to sort by Lowest Rated movies.
               //The built in sort(); function makes bubble sort on the values from the compareNumbers function and list the movies 
               //with lowest rating first.
-              //If    
+              //If on the other hand the boolena is triggered and the user want to sort by top rated movies
+              //The sort() function kicks in and does the bubble sort again but this time it will reverse the list
+              //and the top rated movies will be shown from top to bottom. 
               let compareNumbers = (a, b) =>  {
               	var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
               	var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
@@ -438,6 +436,7 @@ const eddieMovieDatabase = (() => {
         	document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
         	document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
         	document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
+        	//document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.noMovieByThisYear);
         	document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.rateMovie);
         },
         initialize: (() => {

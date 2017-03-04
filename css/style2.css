@@ -91,20 +91,20 @@ h4 {
 	color: white;
 }
 
-/*.movieList {
+.movieList {
 	border: 1px solid white;
-	}*/
+	}
 
 	#movieUL {
 		
-		border: 3px solid white;
+		border: 3px solid red;
 	}
 
 	.movieDIV {
 		height: auto;
 		width: 15rem;
 		margin: 0.5rem 0 0 0;
-		/*border: 3px solid white;*/
+		border: 3px solid white;
 	}
 
 	.movieDIV p {
@@ -115,12 +115,12 @@ h4 {
 	}
 
 	.movieDIV h4 {
-		padding-left: 1rem;
+		
 		word-wrap: break-word
 	}
 
 	.movieDIV img {
-		padding-left: 1rem;
+		
 	}
 
 
