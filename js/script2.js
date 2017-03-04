@@ -180,18 +180,30 @@ const eddieMovieDatabase = (() => {
 		},
 		//Creates a div with paragraphs per movie from the array and shows it on the HTML page.
 		showMoviesOnHTML: () => {
-
 			movieUL.innerHTML = "";
 			for (let i = 0; i < movies.length; i++) {
 				let rating = eddieMovieDatabase.movieRateCalculator(movies[i].ratings);
-				let blockofMovies = `<div class="movieDIV">
+				let blockofMovies = `<div class="movieDIV card col-md-2">
+				<img class="card-img-top img-responsive pt-15" src="${movies[i].cover}">
+				<div class="card-block">
+				<h4 class="card-title">${movies[i].title}</h4>
+				<p class="card-text">${movies[i].year}</p>				
+				<p class="card-text">Genre(s): ${movies[i].genres} </p>
+				<p class="card-text">Ratings: ${rating} </p>
+					</div>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+		/*	movieUL.innerHTML = "";
+			for (let i = 0; i < movies.length; i++) {
+				let rating = eddieMovieDatabase.movieRateCalculator(movies[i].ratings);
+				let blockofMovies = `<div class="movieDIV col-md-4">
 				<img width="200" height="300" src="${movies[i].cover}">
 				<h4>${movies[i].title}</h4>
 				<p>${movies[i].year}</p>				
 				<p>Genre(s): ${movies[i].genres} </p>
 				<p>Ratings: ${rating} </p>
 				</div>`;
-				movieUL.innerHTML += blockofMovies;
+				movieUL.innerHTML += blockofMovies;*/
 			};
 
 		},
