@@ -93,41 +93,58 @@ h4 {
 
 .movieList {
 	border: 1px solid white;
-	}
+}
 
-	#movieUL {
-		
-		border: 3px solid red;
-	}
+#movieUL {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	/* You can set flex-wrap and flex-direction individually */
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	/* Or do it all in one line with flex flow */
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	/* tweak the where items line up on the row */
+	/* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+	-webkit-align-content: flex-end;
+	align-content: flex-end;
+	border: 3px solid red;
+}
 
-	.movieDIV {
-		height: auto;
-		width: 15rem;
-		margin: 0.5rem 0 0 0;
-		border: 3px solid white;
-	}
+.movieDIV {
+	height: auto;
+	width: 15rem;
+	margin: 0.5rem 0 0 0;
+	border: 3px solid white;
+}
 
-	.movieDIV p {
-		font-family: "AgencyFB";
-		color: black;
-		font-size: 1rem;
-		padding-left: 1rem;
-	}
+.movieDIV p {
+	font-family: "AgencyFB";
+	color: black;
+	font-size: 1rem;
+	padding-left: 1rem;
+}
 
-	.movieDIV h4 {
-		
-		word-wrap: break-word
-	}
+.movieDIV h4 {
 
-	.movieDIV img {
-		
-	}
+	word-wrap: break-word
+}
+
+.movieDIV img {
+
+}
 
 
 
-	.img-responsive {
-		display: block;
-		height: auto;
-		max-width: 100%;
-	}
+.img-responsive {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
 
