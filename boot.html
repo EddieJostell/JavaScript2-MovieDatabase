@@ -2,183 +2,149 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <!--   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style2.css">
-    <title>EMDB</title>
+  <meta charset="UTF-8">
+  <!--   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style2.css">
+  <link rel="stylesheet" type="text/css" href="modalstyle.css">
+  <title>EMDB</title>
 </head>
 
 <body>
-    <header class="container-fluid hero">
-        <h1 class="text-uppercase">Eddie's MovieDatabase!</h1>
-        <a id="allMovies" href="#">All Movies</a>
-        <a id="topRated" href="#">Top Rated</a>
-        <a id="lowRated" href="#">Worst Rated</a>
-    </header>
-    <section class="container-fluid">
-        <div class="row">
-            <aside class="settings col-md-3">
-                <section class="movieForm col-md-12">
-                    <!-- Add Movie Form -->
-                    <h2>Add a Movie</h2>
-                    <form id="emdb-form" class="flexAllForms">
-                      <div class="form-group">
-                          <label for="title">Title</label>
-                          <input type="text" class="form-control" id="title">
-                      </div>
-                      <div class="form-group">
-                        <label for="year">Premier Year</label>
-                        <input type="text" class="form-control" id="year">
-                    </div>
-                    <div class="form-group">
-                        <label for="cover">Poster URL</label>
-                        <input type="text" class="form-control" id="cover">
-                    </div>
-                    <div class="form-group">
-                        <label for="genres">Genre(s)</label>
-                        <input type="text" class="form-control" id="genres">
-                    </div>
-                    <div class="form-group">
-                        <label for="ratings">Rate the Movie (1-10)</label>
-                        <input type="text" class="form-control" id="ratings" min="0" max="10">
-                    </div>
-                    <button id="btnAdd" type="button" class="btn btn-danger">Submit</button>
-                </form>
+  <header class="container-fluid">
+   <h1>Eddie's MovieDatabase!</h1>
+   <a id="allMovies" href="#">All Movies</a>
+   <a id="topRated" href="#">Top Rated</a>
+   <a id="lowRated" href="#">Low Rated</a> 
+ </header>
+ <section class="container-fluid">
+  <div class="row">
+    <aside class="settings col-md-3">
+      <section class="movieForm col-md-12">
 
-            </section>
-            <!-- Edit Movie Form -->
-            <section class="editMovie col-md-12">
-              <h2>Edit Movies</h2>
-              <form id="editForm" class="flexAllForms">
-                  <div class="form-group">
-                   <select id="selectedMovieTitle">
-                      <!-- MOVIES FROM DATABASE GOES HERE! -->
-                  </select>
-              </div>
-              <div class="form-group">
-                 <label for="dropDownEditGenre">Genre</label>
-                 <select id="dropDownEditGenre" class="form-control">
-                    <option value="">- Genre(s) -</option>
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Mystery">Mystery</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Thriller">Thriller</option>
-                </select>
-            </div>
-            <div class="form-group">
-               <input id="btnAddGenre" type="button" value="Add Genre" name="btnAddGenre" class="btn btn-danger">
-               <input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre" class="btn btn-danger"> 
-           </div>
-           <div class="form-group">
-             <label for="edRatings">Movie Rating</label>
-             <select id="edRatings" class="form-control">
-                <option value="">- Rate the Movie -</option>
-                <option value="10">10</option>
-                <option value="9">9</option>
-                <option value="8">8</option>
-                <option value="7">7</option>
-                <option value="6">6</option>
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-            </select>
+       
+
+        <!-- Add Movie Form -->
+         <h2>Add a Movie</h2> 
+        <form id="emdb-form" class="flexAllForms">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title">
+          </div>
+          <div class="form-group">
+            <label for="year">Premier Year</label>
+            <input type="text" class="form-control" id="year">
+          </div>
+          <div class="form-group">
+            <label for="cover">Poster URL</label>
+            <input type="text" class="form-control" id="cover">
+          </div>
+          <div class="form-group">
+            <label for="genres">Genre(s)</label>
+            <input type="text" class="form-control" id="genres">
+          </div>
+          <div class="form-group">
+            <label for="ratings">Rate the Movie (1-10)</label>
+            <input type="text" class="form-control" id="ratings" min="0" max="10">
+          </div>
+          <button id="btnAdd" type="button" class="btn btn-danger">Submit</button>
+        </form> 
+
+      </section>
+      <!-- Edit Movie Form -->
+      <section class="editMovie col-md-12">
+        <h2>Edit Movies</h2>
+        <form id="editForm" class="flexAllForms">
+          <div class="form-group">
+           <select id="selectedMovieTitle" class="form-control">
+            <!-- MOVIES FROM DATABASE GOES HERE! -->
+          </select>
         </div>
         <div class="form-group">
-           <input id="btnRate" type="button" value="Rate the movie" name="btnRate" class="btn btn-danger">
-       </div>
-   </form>
+         <label for="dropDownEditGenre">Genre</label>
+         <select id="dropDownEditGenre" class="form-control">
+          <option value="">- Genre(s) -</option>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Crime">Crime</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Romance">Romance</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Thriller">Thriller</option>
+        </select>
+      </div>
+      <div class="form-group">
+       <input id="btnAddGenre" type="button" value="Add Genre" name="btnAddGenre" class="btn btn-danger">
+       <input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre" class="btn btn-danger"> 
+     </div>
+     <div class="form-group">
+       <label for="edRatings">Movie Rating</label>
+       <select id="edRatings" class="form-control">
+        <option value="">- Rate the Movie -</option>
+        <option value="10">10</option>
+        <option value="9">9</option>
+        <option value="8">8</option>
+        <option value="7">7</option>
+        <option value="6">6</option>
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
+      </select>
+    </div>
+    <div class="form-group">
+     <input id="btnRate" type="button" value="Rate the movie" name="btnRate" class="btn btn-danger">
+   </div>
+ </form>
 </section> <!-- End of editMovie -->
 
 <!-- Sort Genre & Year form -->
 <section class="sectionSORT col-md-12">
-    <h2>Sort by Genre and Year</h2>
-    <form class="flexAllForms">
-      <div class="form-group">
-        <label for="txtGenre">Genre</label>
-        <select id="dropDownGenre" class="form-control">
-            <option value="">- Genre(s) -</option>
-            <option value="Action">Action</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Crime">Crime</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Mystery">Mystery</option>
-            <option value="Romance">Romance</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <option value="Thriller">Thriller</option>
-        </select>
+  <h2>Sort by Genre and Year</h2>
+  <form class="flexAllForms">
+    <div class="form-group">
+      <label for="txtGenre">Genre</label>
+      <select id="dropDownGenre" class="form-control">
+        <option value="">- Genre(s) -</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Crime">Crime</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Romance">Romance</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Thriller">Thriller</option>
+      </select>
     </div>
 
     <div class="form-group">
      <label for="sortYear">Year</label>
      <input id="sortYear" type="number" name="sortYear" min="0" max="2017"  class="form-control">
- </div>
+   </div>
 
- <div class="form-group">
+   <div class="form-group">
      <input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear" class="btn btn-danger">    
- </div>  
-</form>
+   </div>  
+ </form>
 </section>
 </aside>   <!-- End of settings -->
 
 <!--  -->
-<section class="movieList col-md-9">
-<!-- <div class="card col-md-2">
-     <img class="card-img-top img-responsive pt-15" src="http://www.impawards.com/2015/posters/spectre.jpg" alt="Card image cap">
-  <div class="card-block">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">
-      Some quick example text to build on the card title
-      and make up the bulk of the card's content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
- -->
+<section class="movieList col-md-9" id="movieUL">
+<!-- <div id="movieUL">
 
- <div id="movieUL">
-
- </div>
+</div> -->
 </section>
 </div> <!-- class row -->
 </section> <!-- container-fluid -->
 <script type="text/javascript" scr="bootstrap/js/bootstrap.js"></script>
- <script type="text/javascript" src="js/script2.js"></script> 
+<script type="text/javascript" src="js/script2.js"></script> 
 </body>
 </html>
 
-<!--
-`<div class="column col-4">
-                    <div class="card">
-                         <div class="card-image">
-                                <img class="img-responsive" src="${cover}">
-                            </div>
-                            <div class="card-header">
-                                <h4 class="card-title">${title}</h4>
-                                <h6 class="card-meta">${year}</h6>
-                            </div>
-                            <div class="card-footer">
-                                <div class="chip">
-                                    <div class="chip-title">Genres:&nbsp;</div>
-                                    <div class="chip-meta">${genre}</div>
-                                </div></br>
-                                <div class="chip">
-                                    <div class="chip-title">Ratings:&nbsp;</div>
-                                    <div class="chip-meta">${avgRatings}</div>
-                                </div></br></br>
-                                <button class="btn btn-sm tooltip" data-tooltip="Sätt betyg" onclick="movieDataBase.rateMovie(event)">+1</button>
-                                <button class="btn btn-sm tooltip" data-tooltip="Lägg till/editera genre" onclick="movieDataBase.addGenre(event)">Genre</button>
-                         </div>
-                    </div>
-                </div>
-            -->

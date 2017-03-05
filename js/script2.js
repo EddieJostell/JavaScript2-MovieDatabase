@@ -186,11 +186,11 @@ const eddieMovieDatabase = (() => {
 				let blockofMovies = `<div class="movieDIV card col-md-2">
 				<img class="card-img-top img-responsive pt-15" src="${movies[i].cover}">
 				<div class="card-block">
-				<h4 class="card-title">${movies[i].title}</h4>
+				<h6 class="card-title">${movies[i].title}</h6>
 				<p class="card-text">${movies[i].year}</p>				
-				<p class="card-text">Genre(s): ${movies[i].genres} </p>
+				<p class="card-text">Genre(s): ${movies[i].genres}</p>
 				<p class="card-text">Ratings: ${rating} </p>
-					</div>
+				</div>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
 		/*	movieUL.innerHTML = "";
@@ -212,6 +212,21 @@ const eddieMovieDatabase = (() => {
 			movieUL.innerHTML = "";
 			for (let i = 0; i < x.length; i++) {
 				let rating = eddieMovieDatabase.movieRateCalculator(x[i].ratings);
+				let blockofMovies = `<div class="movieDIV card col-md-2">
+				<img class="card-img-top img-responsive pt-15" src="${x[i].cover}">
+				<div class="card-block">
+				<h6 class="card-title">${x[i].title}</h6>
+				<p class="card-text">${x[i].year}</p>				
+				<p class="card-text">Genre(s): ${x[i].genres}</p>
+				<p class="card-text">Ratings: ${rating} </p>
+				</div>
+				</div>`;
+				movieUL.innerHTML += blockofMovies;
+			};
+
+		/*	movieUL.innerHTML = "";
+			for (let i = 0; i < x.length; i++) {
+				let rating = eddieMovieDatabase.movieRateCalculator(x[i].ratings);
 				let blockofMovies = `<div class="movieDIV">
 				<img width="200" height="300" src="${x[i].cover}">
 				<h4>${x[i].title}</h4>
@@ -220,11 +235,26 @@ const eddieMovieDatabase = (() => {
 				<p>Ratings: ${rating} </p>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
-			};
+			};*/
 
 		},
 		//Function that prints out on the DOM a specific movie that was searched for by genre.
 		showMoviesByGenre: (index) => {
+			let blockofMovies = '';
+			let rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
+			blockofMovies = `<div class="movieDIV card col-md-2">
+			<img class="card-img-top img-responsive pt-15" src="${movies[index].cover}">
+			<div class="card-block">
+			<h6 class="card-title">${movies[index].title}</h6>
+			<p class="card-text">${movies[index].year}</p>				
+			<p class="card-text">Genre(s): ${movies[index].genres}</p>
+			<p class="card-text">Ratings: ${rating} </p>
+			</div>
+			</div>`;
+			movieUL.innerHTML += blockofMovies;
+
+
+/*
 			let blockofMovies = '';
 			//movieUL.innerHTML = "";
 			
@@ -236,13 +266,24 @@ const eddieMovieDatabase = (() => {
 			<p>Genre(s): ${movies[index].genres} </p>
 			<p>Ratings: ${rating} </p>
 			</div>`;
-			movieUL.innerHTML += blockofMovies;
+			movieUL.innerHTML += blockofMovies;*/
 		},
 		//Function that prints out on the DOM a specific movie that was searched for by year.
 		showMoviesByYear: (year) => {
 			let blockofMovies = '';
 			//movieUL.innerHTML = "";
-			
+			let rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
+			blockofMovies = `<div class="movieDIV card col-md-2">
+			<img class="card-img-top img-responsive pt-15" src="${movies[year].cover}">
+			<div class="card-block">
+			<h6 class="card-title">${movies[year].title}</h6>
+			<p class="card-text">${movies[year].year}</p>				
+			<p class="card-text">Genre(s): ${movies[year].genres}</p>
+			<p class="card-text">Ratings: ${rating} </p>
+			</div>
+			</div>`;
+			movieUL.innerHTML += blockofMovies;
+			/*
 			let rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
 			blockofMovies = `<div class="movieDIV">
 			<img width="200" height="300" src="${movies[year].cover}">
@@ -251,7 +292,7 @@ const eddieMovieDatabase = (() => {
 			<p>Genre(s): ${movies[year].genres} </p>
 			<p>Ratings: ${rating} </p>
 			</div>`;
-			movieUL.innerHTML += blockofMovies;
+			movieUL.innerHTML += blockofMovies;*/
 			
 		},
 		//Function that will run if no movie with the year searched for is found in the database.
@@ -414,10 +455,14 @@ const eddieMovieDatabase = (() => {
         	let selectedMovie = document.getElementById("selectedMovieTitle").value;
         	let addedRate = document.getElementById("edRatings").value;
         	let intRate = parseInt(addedRate);
+        	//If no number has been chosen you are reminded that you need to choose one.
         	if (addedRate === "") {
         		alert("Please choose a number!");
         		return;
         	}
+        	//If you have chosen a number the loop will go through the array of moveis and check 
+        	//if the selected movie in the drop down menu is equal to a movie in the array
+        	//and push the selected number into the ratings array for the specified movie.
         	else {
         		for (var i = 0; i < movies.length; i++) {
         			if (selectedMovie === movies[i].title) {
@@ -426,6 +471,49 @@ const eddieMovieDatabase = (() => {
         		}
         	}
         	eddieMovieDatabase.showMoviesOnHTML();
+        },
+        myModal: () => {
+        	var btn = document.querySelector( '.btn' );
+
+        	var btnFront = btn.querySelector( '.btn-front' ),
+        	btnYes = btn.querySelector( '.btn-back .yes' ),
+        	btnNo = btn.querySelector( '.btn-back .no' );
+
+        	btnFront.addEventListener( 'click', function( event ) {
+        		var mx = event.clientX - btn.offsetLeft,
+        		my = event.clientY - btn.offsetTop;
+
+        		var w = btn.offsetWidth,
+        		h = btn.offsetHeight;
+
+        		var directions = [
+        		{ id: 'top', x: w/2, y: 0 },
+        		{ id: 'right', x: w, y: h/2 },
+        		{ id: 'bottom', x: w/2, y: h },
+        		{ id: 'left', x: 0, y: h/2 }
+        		];
+
+        		directions.sort( function( a, b ) {
+        			return distance( mx, my, a.x, a.y ) - distance( mx, my, b.x, b.y );
+        		} );
+
+        		btn.setAttribute( 'data-direction', directions.shift().id );
+        		btn.classList.add( 'is-open' );
+        	} );
+
+        	btnYes.addEventListener( 'click', function( event ) {
+        		btn.classList.remove( 'is-open' );
+        	} );
+
+        	btnNo.addEventListener( 'click', function( event ) {
+        		btn.classList.remove( 'is-open' );
+        	} );
+
+        	function distance( x1, y1, x2, y2 ) {
+        		var dx = x1-x2;
+        		var dy = y1-y2;
+        		return Math.sqrt( dx*dx + dy*dy );
+        	}
         },
         registerEventHandlers: () => {
         	document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
@@ -444,6 +532,7 @@ const eddieMovieDatabase = (() => {
         		eddieMovieDatabase.showMoviesOnHTML();
         		eddieMovieDatabase.populateEditDropDown();
         		eddieMovieDatabase.registerEventHandlers();
+        		eddieMovieDatabase.myModal();
         	});
         })()
 
@@ -452,6 +541,11 @@ const eddieMovieDatabase = (() => {
 
 
 //console.log(eddieMovieDatabase.getMovies());
+
+
+
+
+
 
 
 
