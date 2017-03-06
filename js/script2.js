@@ -193,19 +193,7 @@ const eddieMovieDatabase = (() => {
 				</div>
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
-		/*	movieUL.innerHTML = "";
-			for (let i = 0; i < movies.length; i++) {
-				let rating = eddieMovieDatabase.movieRateCalculator(movies[i].ratings);
-				let blockofMovies = `<div class="movieDIV col-md-4">
-				<img width="200" height="300" src="${movies[i].cover}">
-				<h4>${movies[i].title}</h4>
-				<p>${movies[i].year}</p>				
-				<p>Genre(s): ${movies[i].genres} </p>
-				<p>Ratings: ${rating} </p>
-				</div>`;
-				movieUL.innerHTML += blockofMovies;*/
 			};
-
 		},
 		showSortedMoviesOnHTML: (x) => {
 
@@ -224,19 +212,6 @@ const eddieMovieDatabase = (() => {
 				movieUL.innerHTML += blockofMovies;
 			};
 
-		/*	movieUL.innerHTML = "";
-			for (let i = 0; i < x.length; i++) {
-				let rating = eddieMovieDatabase.movieRateCalculator(x[i].ratings);
-				let blockofMovies = `<div class="movieDIV">
-				<img width="200" height="300" src="${x[i].cover}">
-				<h4>${x[i].title}</h4>
-				<p>${x[i].year}  </p>
-				<p>Genre(s): ${x[i].genres} </p>
-				<p>Ratings: ${rating} </p>
-				</div>`;
-				movieUL.innerHTML += blockofMovies;
-			};*/
-
 		},
 		//Function that prints out on the DOM a specific movie that was searched for by genre.
 		showMoviesByGenre: (index) => {
@@ -252,21 +227,6 @@ const eddieMovieDatabase = (() => {
 			</div>
 			</div>`;
 			movieUL.innerHTML += blockofMovies;
-
-
-/*
-			let blockofMovies = '';
-			//movieUL.innerHTML = "";
-			
-			let rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
-			blockofMovies = `<div class="movieDIV">
-			<img width="200" height="300" src="${movies[index].cover}">
-			<h4>${movies[index].title}</h4>
-			<p>${movies[index].year}  </p>
-			<p>Genre(s): ${movies[index].genres} </p>
-			<p>Ratings: ${rating} </p>
-			</div>`;
-			movieUL.innerHTML += blockofMovies;*/
 		},
 		//Function that prints out on the DOM a specific movie that was searched for by year.
 		showMoviesByYear: (year) => {
@@ -283,17 +243,7 @@ const eddieMovieDatabase = (() => {
 			</div>
 			</div>`;
 			movieUL.innerHTML += blockofMovies;
-			/*
-			let rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
-			blockofMovies = `<div class="movieDIV">
-			<img width="200" height="300" src="${movies[year].cover}">
-			<h4>${movies[year].title}</h4>
-			<p>${movies[year].year}  </p>
-			<p>Genre(s): ${movies[year].genres} </p>
-			<p>Ratings: ${rating} </p>
-			</div>`;
-			movieUL.innerHTML += blockofMovies;*/
-			
+		
 		},
 		//Function that will run if no movie with the year searched for is found in the database.
 	/*noMovieByThisYear: () => {
@@ -472,7 +422,7 @@ const eddieMovieDatabase = (() => {
         	}
         	eddieMovieDatabase.showMoviesOnHTML();
         },
-        myModal: () => {
+        /*myModal: () => {
         	var btn = document.querySelector( '.btn' );
 
         	var btnFront = btn.querySelector( '.btn-front' ),
@@ -514,7 +464,7 @@ const eddieMovieDatabase = (() => {
         		var dy = y1-y2;
         		return Math.sqrt( dx*dx + dy*dy );
         	}
-        },
+        },*/
         registerEventHandlers: () => {
         	document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
         	document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
@@ -532,7 +482,7 @@ const eddieMovieDatabase = (() => {
         		eddieMovieDatabase.showMoviesOnHTML();
         		eddieMovieDatabase.populateEditDropDown();
         		eddieMovieDatabase.registerEventHandlers();
-        		eddieMovieDatabase.myModal();
+        		//eddieMovieDatabase.myModal();
         	});
         })()
 
