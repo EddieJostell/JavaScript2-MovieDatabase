@@ -21,7 +21,13 @@ const eddieMovieDatabase = (() => {
 		genres: ["Action", "Thriller"],
 		ratings: [6,6,7,8,9,2,4,3,2,6]
 	},
-
+	{
+		title: "LOGAN",
+		year: 2017,
+		cover: "http://screencrush.com/files/2017/01/loganposter2.jpg",
+		genres: [" Action", "Drama", "Sci-Fi "],
+		ratings: [9,8,9,9,9,7,9,9,7,9]
+	},
 	{
 		title: "Waterworld",
 		year: 1995,
@@ -35,7 +41,7 @@ const eddieMovieDatabase = (() => {
 		year: 1982,
 		cover: "https://images-na.ssl-images-amazon.com/images/I/51fHyCTQ2GL._SY300_.jpg",
 		genres: ["Sci-Fi", "Thriller"],
-		ratings: [9,8,9,7,9,8,9,8,9]
+		ratings: [9,8,9,10,9,8,9,8,9,9]
 	},
 	{
 		title: "The Fifth Element",
@@ -188,7 +194,7 @@ const eddieMovieDatabase = (() => {
 				<div class="card-block">
 				<h6 class="card-title">${movies[i].title}</h6>
 				<p class="card-text">${movies[i].year}</p>				
-				<p class="card-text">Genre(s): ${movies[i].genres}</p>
+				<p class="card-text">Genre(s): ${movies[i].genres.join(", ")}</p>
 				<p class="card-text">Ratings: ${rating} </p>
 				</div>
 				</div>`;
@@ -205,7 +211,7 @@ const eddieMovieDatabase = (() => {
 				<div class="card-block">
 				<h6 class="card-title">${x[i].title}</h6>
 				<p class="card-text">${x[i].year}</p>				
-				<p class="card-text">Genre(s): ${x[i].genres}</p>
+				<p class="card-text">Genre(s): ${x[i].genres.join(", ")}</p>
 				<p class="card-text">Ratings: ${rating} </p>
 				</div>
 				</div>`;
@@ -222,7 +228,7 @@ const eddieMovieDatabase = (() => {
 			<div class="card-block">
 			<h6 class="card-title">${movies[index].title}</h6>
 			<p class="card-text">${movies[index].year}</p>				
-			<p class="card-text">Genre(s): ${movies[index].genres}</p>
+			<p class="card-text">Genre(s): ${movies[index].genres.join(", ")}</p>
 			<p class="card-text">Ratings: ${rating} </p>
 			</div>
 			</div>`;
@@ -238,17 +244,18 @@ const eddieMovieDatabase = (() => {
 			<div class="card-block">
 			<h6 class="card-title">${movies[year].title}</h6>
 			<p class="card-text">${movies[year].year}</p>				
-			<p class="card-text">Genre(s): ${movies[year].genres}</p>
+			<p class="card-text">Genre(s): ${movies[year].genres.join(", ")}</p>
 			<p class="card-text">Ratings: ${rating} </p>
 			</div>
 			</div>`;
 			movieUL.innerHTML += blockofMovies;
-		
+
 		},
-		//Function that will run if no movie with the year searched for is found in the database.
-	/*noMovieByThisYear: () => {
-			alert("Sorry no movie with that year currently in the database");
-		},*/
+		//Function that will run if no movie with the year you searched is in the database.
+		noMovieByThisYear: () => {
+			console.log("IAM RUNNING!");
+			movieUL.innerHTML = `<h1 class="h1-color">Sorry no movie with that year currently in the database!</h1>`	
+		},
 		
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
@@ -328,19 +335,22 @@ const eddieMovieDatabase = (() => {
         sortByYear: () => {
         	let txtYear = document.getElementById("sortYear").value;
         	let intYear = parseInt(txtYear);
+        	let noMoviesFound = true;
         	if (txtYear === "") {
         		alert("Please enter a year!");
         		return;
         	}
         	movieUL.innerHTML = "";
+        	console.log(movieUL.innerHTML);
         	for (var i = 0; i < movies.length; i++) {
         		if (intYear == movies[i].year) {
+        			noMoviesFound = false;
         			eddieMovieDatabase.showMoviesByYear(i);
         		}
-        		/*else if (intYear !== movies[i].year) {
-        			eddieMovieDatabase.noMovieByThisYear();
-        		}*/
         	}
+        	if (noMoviesFound) {
+        			eddieMovieDatabase.noMovieByThisYear();
+        		}
         },
         //Function that populates the dropdown menu on the edit movie interface.
         populateEditDropDown: () => {
@@ -431,7 +441,6 @@ const eddieMovieDatabase = (() => {
         	document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
         	document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
         	document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
-        	//document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.noMovieByThisYear);
         	document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.rateMovie);
         },
         initialize: (() => {
@@ -447,7 +456,7 @@ const eddieMovieDatabase = (() => {
 })();
 
 
-//console.log(eddieMovieDatabase.getMovies());
+console.log(eddieMovieDatabase.getMovies());
 
 
 
