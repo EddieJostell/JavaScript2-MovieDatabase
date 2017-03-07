@@ -45,7 +45,6 @@ a {
 	text-decoration: none;
 }
 
-
  a:hover {
 	color: green;
 	text-decoration: none;
@@ -75,6 +74,11 @@ a {
 	color: green;
 	text-decoration: none;
 	margin: 0 0 70px 0;
+}
+
+.noMovie-margin-color {
+	color: red;
+	margin: 75px 0 0 0;
 }
 
 .pt-15{

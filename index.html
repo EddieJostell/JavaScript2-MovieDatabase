@@ -91,7 +91,7 @@
       <div class="modal-body">
         <form id="editForm" class="flexAllForms">
           <div class="form-group">
-            <h4>Edit Movies</h4>
+            <h4 for="selectedMovieTitle">Edit Movies</h4>
             <select id="selectedMovieTitle" class="form-control">
               <!-- MOVIES FROM DATABASE GOES HERE! -->
             </select>
@@ -115,6 +115,13 @@
         <div class="form-group">
          <input id="btnAddGenre" type="button" value="Add Genre" name="btnAddGenre" class="btn btn-danger">
          <input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre" class="btn btn-danger"> 
+       </div>
+       <div class="form-group">
+         <label for="editNewCover">Edit Movie Poster</label>
+         <input id="editNewCover" type="url" name="editCover" class="form-control">
+       </div>
+       <div class="form-group">
+         <input id="btnEditCover" type="button" name="btnEditCover" value="Edit Poster" class="btn btn-danger" data-dismiss="modal">
        </div>
        <div class="form-group">
          <label for="edRatings">Movie Rating</label>
@@ -158,39 +165,39 @@
          <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button> -->
-        <div class="modal-body">
-         <!-- Sort Genre & Year form -->
-         <form class="flexAllForms">
-          <div class="form-group">
-            <h4>Sort by Genre and Year</h4>
-            <label for="txtGenre">Genre</label>
-            <select id="dropDownGenre" class="form-control">
-              <option value="">- Genre(s) -</option>
-              <option value="Action">Action</option>
-              <option value="Adventure">Adventure</option>
-              <option value="Crime">Crime</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Drama">Drama</option>
-              <option value="Fantasy">Fantasy</option>
-              <option value="Mystery">Mystery</option>
-              <option value="Romance">Romance</option>
-              <option value="Sci-Fi">Sci-Fi</option>
-              <option value="Thriller">Thriller</option>
-            </select>
-          </div>
+          <div class="modal-body">
+           <!-- Sort Genre & Year form -->
+           <form class="flexAllForms">
+            <div class="form-group">
+              <h4>Sort by Genre and Year</h4>
+              <label for="txtGenre">Genre</label>
+              <select id="dropDownGenre" class="form-control">
+                <option value="">- Genre(s) -</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Crime">Crime</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Romance">Romance</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-           <label for="sortYear">Year</label>
-           <input id="sortYear" type="number" name="sortYear" min="0" max="2017"  class="form-control">
-         </div>
-         <div class="form-group">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear" class="btn btn-danger">    
-         </div>  
-       </form>
-     </div>
+            <div class="form-group">
+             <label for="sortYear">Year</label>
+             <input id="sortYear" type="number" name="sortYear" min="0" max="2017"  class="form-control">
+           </div>
+           <div class="form-group">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear" class="btn btn-danger">    
+          </div>  
+        </form>
+      </div>
+    </div>
   </div>
-</div>
 </div>
 <!-- MODAL FADE SORT BY GENRE END -->
 </section>
