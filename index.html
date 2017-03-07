@@ -1,118 +1,211 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<title>MovieDatabase</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>EMDB</title>
 </head>
+
 <body>
-	<header>
-		<h1>Eduardo's MovieDatabase</h1>
-		<a id="allMovies" href="#" onclick="eddieMovieDatabase.showMoviesOnHTML()">All Movies</a>
-		<a id="topRated" href="#">Top Rated</a>
-		<a id="lowRated" href="#">Worst Rated</a>
-	</header>
-	<main>
-		<section id="formLeft">
+  <header class="container-fluid">
+    <h1 class="text-uppercase">Eddie's Movie Database!</h1>
+   <!-- <a id="allMovies" href="#">All Movies</a>
+   <a id="topRated" href="#">Top Rated</a>
+   <a id="lowRated" href="#">Low Rated</a>  -->
+ </header>
+ <section class="container-fluid">
+  <div class="row">
+    <aside class="settings col-md-3">
+      <section class="movieMenu col-md-12 flexAllForms">
+        <a class="h1-color" id="allMovies" href="#">All Movies</a>
+        <a class="h1-color" id="topRated" href="#">Top Rated</a>
+        <a class="h1-color" id="lowRated" href="#">Low Rated</a> 
+      </section>
+      <section class="movieForm col-md-12 flexAllForms">
+        <!-- BOOTSTRAP MODAL FADE ADD MOVIE -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#addMovieModal">
+          Add a new movie
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span> -->
+          </button>
+          <div class="modal-body">
+           <!-- Add Movie Form -->
+           <form id="emdb-form" class="flexAllForms">
+            <div class="form-group">
+             <h4>Add a Movie</h4> 
+           </div>
+           <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title">
+          </div>
+          <div class="form-group">
+            <label for="year">Premier Year</label>
+            <input type="text" class="form-control" id="year">
+          </div>
+          <div class="form-group">
+            <label for="cover">Poster URL</label>
+            <input type="url" class="form-control" id="cover">
+          </div>
+          <div class="form-group">
+            <label for="genres">Genre(s) (Divide by space)</label>
+            <input type="text" class="form-control" id="genres">
+          </div>
+          <div class="form-group">
+            <label for="ratings">Rate the Movie (1-10)</label>
+            <input type="text" class="form-control" id="ratings" min="0" max="10">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="btnAdd" type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
+          </div>
+        </form>  
+      </div>
+    </div>
+  </div>
+</div>
+<!-- BOOTSTRAP MODAL FADE ADD MOVIE END -->
+</section>
+<!-- Edit Movie Form -->
+<section class="editMovie col-md-12 flexAllForms">
+ <!-- MODAL FADE EDIT MOVIE -->
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#editMovieModal">
+   Edit Movie
+ </button>
+ <!-- Modal -->
+ <div class="modal fade" id="editMovieModal" tabindex="-1" role="dialog" aria-labelledby="editMovieModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button> -->
+      <div class="modal-body">
+        <form id="editForm" class="flexAllForms">
+          <div class="form-group">
+            <h4>Edit Movies</h4>
+            <select id="selectedMovieTitle" class="form-control">
+              <!-- MOVIES FROM DATABASE GOES HERE! -->
+            </select>
+          </div>
+          <div class="form-group">
+           <label for="dropDownEditGenre">Genre</label>
+           <select id="dropDownEditGenre" class="form-control">
+            <option value="">- Genre(s) -</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Crime">Crime</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Thriller">Thriller</option>
+          </select>
+        </div>
+        <div class="form-group">
+         <input id="btnAddGenre" type="button" value="Add Genre" name="btnAddGenre" class="btn btn-danger">
+         <input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre" class="btn btn-danger"> 
+       </div>
+       <div class="form-group">
+         <label for="edRatings">Movie Rating</label>
+         <select id="edRatings" class="form-control">
+          <option value="">- Rate the Movie -</option>
+          <option value="10">10</option>
+          <option value="9">9</option>
+          <option value="8">8</option>
+          <option value="7">7</option>
+          <option value="6">6</option>
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+      </div>
+      <div class="form-group">
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <input id="btnRate" type="button" value="Rate the movie" name="btnRate" class="btn btn-danger">
+     </div>
+   </form>
+ </div>
+</div>
+</div>
+</div>
+<!-- MODAL FADE EDIT MOVIE END -->
+</section> <!-- End of editMovie -->
 
-			<section class="sec-form">
-				<!-- Add Movie Form -->
-				<h2>Add a Movie</h2>
-				<div id="divider1"></div>
-				<form id="emdb-form">
-					<label for="title">Title</label>
-					<input id="title" type="text" name="title" autofocus="true" maxlength="50">
-					<label for="year">Premier Year</label>
-					<input id="year" type="text" name="year">
-					<label for="cover">Poster URL</label>
-					<input id="cover" type="text" name="cover">
-					<label for="genres">Genre(s)</label>
-					<input id="genres" type="text" name="genres">
-					<label for="ratings">Rate the Movie (1-10)</label>
-					<input id="ratings" type="number" name="ratings" min="0" max="10" maxlength="4">
-					<input id="btnAdd" type="button" value="Submit" name="btnSubmit">
-				</form>
-			</section>
-               <!-- Sort Genre & Year form -->
-			<section class="sectionSORT">
-				<h2>Sort by Genre and Year</h2>
-				<div id="divider2"></div>
-				<label for="txtGenre">Genre</label>
 
-				<select id="dropDownGenre">
-					<option value="">- Genre(s) -</option>
-					<option value="Action">Action</option>
-					<option value="Adventure">Adventure</option>
-					<option value="Crime">Crime</option>
-					<option value="Comedy">Comedy</option>
-					<option value="Drama">Drama</option>
-					<option value="Fantasy">Fantasy</option>
-					<option value="Mystery">Mystery</option>
-					<option value="Romance">Romance</option>
-					<option value="Sci-Fi">Sci-Fi</option>
-					<option value="Thriller">Thriller</option>
-				</select>
-				
-				<label for="sortYear">Year</label>
-				<input id="sortYear" type="number" name="sortYear" min="0" max="2017">
-				<input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear">
-				
-			</section>
-			<!-- Edit Form -->
-			<div id="editList">
-				<h2>Edit Movies</h2>
-				<div id="divider1"></div>
-				<form id="editForm">
-					<select id="selectedMovieTitle">
+<section class="sectionSORT col-md-12 flexAllForms">
+  <!-- MODAL FADE SORT BY GENRE -->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#sortByModal">
+    Sort by Genre and Year
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="sortByModal" tabindex="-1" role="dialog" aria-labelledby="sortByModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button> -->
+        <div class="modal-body">
+         <!-- Sort Genre & Year form -->
+         <form class="flexAllForms">
+          <div class="form-group">
+            <h4>Sort by Genre and Year</h4>
+            <label for="txtGenre">Genre</label>
+            <select id="dropDownGenre" class="form-control">
+              <option value="">- Genre(s) -</option>
+              <option value="Action">Action</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Crime">Crime</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Drama">Drama</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Mystery">Mystery</option>
+              <option value="Romance">Romance</option>
+              <option value="Sci-Fi">Sci-Fi</option>
+              <option value="Thriller">Thriller</option>
+            </select>
+          </div>
 
-					</select>
-					<label>Genre</label>
-					<select id="dropDownEditGenre">
-						<option value="">- Genre(s) -</option>
-						<option value="Action">Action</option>
-						<option value="Adventure">Adventure</option>
-						<option value="Crime">Crime</option>
-						<option value="Comedy">Comedy</option>
-						<option value="Drama">Drama</option>
-						<option value="Fantasy">Fantasy</option>
-						<option value="Mystery">Mystery</option>
-						<option value="Romance">Romance</option>
-						<option value="Sci-Fi">Sci-Fi</option>
-						<option value="Thriller">Thriller</option>
-					</select>
-					<!-- <label for="addGenres">Add Genre(s)</label>
-					<input id="addGenres" type="text" name="addGenres">-->
-					<input id="btnAddGenre" type="button" value="Add Genre" name="btnAddGenre">
-					<!--<label for="delGenres">Remove Genre(s)</label>
-					<input id="delGenres" type="text" name="delGenres">-->
-					<input id="btnDeleteGenre" type="button" value="Remove Genre" name="btnDeleteGenre"> 
-					<label for="edRatings">Movie Rating</label>
-					<!-- <input id="edRatings" type="number" name="ratings" min="0" max="2017" maxlength="4"> -->
-					<select id="edRatings">
-						<option value="">- Rate the Movie -</option>
-						<option value="10">10</option>
-						<option value="9">9</option>
-						<option value="8">8</option>
-						<option value="7">7</option>
-						<option value="6">6</option>
-						<option value="5">5</option>
-						<option value="4">4</option>
-						<option value="3">3</option>
-						<option value="2">2</option>
-						<option value="1">1</option>
-					</select>
-					<input id="btnRate" type="button" value="Rate the movie" name="btnRate">
-				</form>
-			</div>
-		</section>
-		<section id="movieList">
-			<!-- <h2>Movie List</h2>
-			<div id="divider1"></div> -->
-			<ul id="movieUL">
-				 
-			</ul>
-		</section>
-	</main>
-	<!-- <script type="text/javascript" src="js/script.js"></script> -->
-	<script type="text/javascript" src="js/script2.js"></script> 
+          <div class="form-group">
+           <label for="sortYear">Year</label>
+           <input id="sortYear" type="number" name="sortYear" min="0" max="2017"  class="form-control">
+         </div>
+         <div class="form-group">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <input  id="btnSortYear" type="button" value="Sort by Year" name="btnSortYear" class="btn btn-danger">    
+         </div>  
+       </form>
+     </div>
+  </div>
+</div>
+</div>
+<!-- MODAL FADE SORT BY GENRE END -->
+</section>
+</aside>   <!-- End of settings -->
+
+<!-- MOVIE LIST FROM DATABASE DYNAMICALLY GENERATED FROM JS  -->
+<section class="movieList col-md-9" id="movieUL">
+
+</section>
+</div> <!-- class row -->
+</section> <!-- container-fluid -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/script2.js"></script> 
 </body>
 </html>
+
