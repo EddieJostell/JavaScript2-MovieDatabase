@@ -266,6 +266,8 @@ const eddieMovieDatabase = (() => {
 		
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
+			//Takes in a the rating array from a movie (object).
+			//Loops through the array and 
 			let arrayLength = movieArray.length
 			let totalSum = movieArray;
 			let calcRate = 0;
@@ -285,14 +287,15 @@ const eddieMovieDatabase = (() => {
 				//Push excisting array into the new array.
 				sortedArray.push(movies[i]);
 			}
-              //Compare function that look at the calculated median rating value of a movie in the array 
-              //and compare it against the value of the another movie and returns a movie rating depending on largest value.
-              //If the boolean sortByHigh is not triggered indicating that the user want to sort by Lowest Rated movies.
-              //The built in sort(); function makes bubble sort on the values from the compareNumbers function and list the movies 
-              //with lowest rating first.
-              //If on the other hand the boolena is triggered and the user want to sort by top rated movies
-              //The sort() function kicks in and does the bubble sort again but this time it will reverse the list
-              //and the top rated movies will be shown from top to bottom. 
+              //Compare function that look at the calculated median rating values of movies in the array. 
+              //The function take two arguments, return 0, greater than 0, or less than 0, based on what happens with the values that come in to the function.
+              //Return less than 0 if r1 is less than r2
+              //Return greater than 0 if r1 is greater than r2
+              //Return 0 if r1 equals r2
+              //When you call sort() with the compare function, the function is called on pairs in your to-be-sorted list, to determine the proper ordering.
+              //The boolean sortByHigh is triggered indicating that the user want to sort by highest rated movies and thus reverse the array after it has been sorted and displayed.
+              //if the boolean is not triggered the array is sorted and and displayed with the lowest rated movie first.
+             
               let compareNumbers = (a, b) =>  {
               	var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
               	var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
