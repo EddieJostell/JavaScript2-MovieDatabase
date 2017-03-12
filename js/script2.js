@@ -124,9 +124,70 @@ const eddieMovieDatabase = (() => {
 		cover: "https://www.movieposter.com/posters/archive/main/42/MPW-21199",
 		genres: ["Action", "Adventure", "Drama"],
 		ratings: [10,10,10,10,10,10,10]
+	},
+	{
+		title: "Fantastic Beasts and Where to Find Them",
+		year: 2016,
+		cover: "http://www.impawards.com/2016/posters/fantastic_beasts_and_where_to_find_them_ver16.jpg",
+		genres: ["Adventure", "Family", "Fantasy"],
+		ratings: [7,8,6,8,9,8,6,7,8,9]
+	},
+	{
+		title: "Spirited Away",
+		year: 2001,
+		cover: "https://dickwalsh.files.wordpress.com/2013/10/spirited_away.jpg",
+		genres: ["Animation", "Adventure", "Family"],
+		ratings: [9,8,7,10,9,8,9,8,8,9]
+	},
+	{
+		title: "Redline",
+		year: 2010,
+		cover: "http://img.moviepostershop.com/redline-movie-poster-2007-1020672970.jpg",
+		genres: ["Animation", "Action", "Sci-Fi"],
+		ratings: [10,10,9,8,8,8,7,6,7,8]
+	}, 
+	{
+		title: "Doctor Strange",
+		year: 2016,
+		cover: "http://static.srcdn.com/wp-content/uploads/Doctor-Strange-Poster.jpg",
+		genres: [ "Action", "Adventure", "Fantasy"],
+		ratings: [8,7,8,7,9,9,7,6,7,9]
+	},
+	{
+		title: "Guardians of the Galaxy",
+		year: 2014,
+		cover: "http://1.media.dorkly.cvcdn.com/26/95/18b149286ca6f2920e017bd5d2ffcbf5.jpg",
+		genres: ["Action", "Adventure", "Sci-Fi"],
+		ratings: [8,6,7,9,9,9,9,8,8,9]
+	},
+	{
+		title: "Face Off",
+		year: 1997,
+		cover: "https://s-media-cache-ak0.pinimg.com/originals/17/33/98/1733989e58087dacb125f33859342243.jpg",
+		genres: ["Action", "Crime", "Sci-Fi"],
+		ratings: [7,8,9,9,9,7,8,8,7,9]
+	},
+	{
+		title: "The Sorcerer's Apprentice",
+		year: 2010,
+		cover: "https://lumiere-a.akamaihd.net/v1/images/open-uri20150422-12561-qtxkpo_f075f6b3.jpeg?region=0%2C0%2C1578%2C2213",
+		genres: ["Action", "Adventure", "Family"],
+		ratings: [7,7,6,7,8,7,7,6,7,9]
+	},
+	{
+		title: "Lord of War",
+		year: 2005,
+		cover: "http://www.impawards.com/2005/posters/lord_of_war_ver2.jpg",
+		genres: ["Crime", "Drama", "Thriller"],
+		ratings: [9,8,7,8,7,8,8,8,6,7]
+	}, 
+	{
+		title: "Gone in 60 Seconds",
+		year: 2000,
+		cover: "https://fanart.tv/fanart/movies/9679/movieposter/gone-in-sixty-seconds-531982ee94cba.jpg",
+		genres: ["Action", "Crime", "Thriller"],
+		ratings: [7,7,7,7,7,8,8,8,8,8]
 	}
-
-
 	];
 
 	return {
@@ -267,10 +328,11 @@ const eddieMovieDatabase = (() => {
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
 			//Takes in a the rating array from a movie (object).
-			//Loops through the array and add the  index's with each other
-			//and put them into caclRate.
+			//Loops through the array and add the index's with each other
+			//and put them into calcRate.
 			//To get the median movie rating value I take the total sum of the looped array
-			//and devided it with the length of the array.
+			//and devided it with the length of the array
+			//return it with one decimal. 
 			let arrayLength = movieArray.length
 			let totalSum = movieArray;
 			let calcRate = 0;
@@ -290,15 +352,14 @@ const eddieMovieDatabase = (() => {
 				//Push excisting array into the new array.
 				sortedArray.push(movies[i]);
 			}
-              //Compare function that look at the calculated median rating values of movies in the array. 
-              //The function take two arguments, return 0, greater than 0, or less than 0, based on what happens with the values that come in to the function.
-              //Return less than 0 if r1 is less than r2
-              //Return greater than 0 if r1 is greater than r2
-              //Return 0 if r1 equals r2
-              //When you call sort() with the compare function, the function is called on pairs in your to-be-sorted list, to determine the proper ordering.
-              //The boolean sortByHigh is triggered indicating that the user want to sort by highest rated movies and thus reverse the array after it has been sorted and displayed.
+              //Compare function that look at the calculated median rating values of movies in the movies array
+              //and sort them according to the bubble sort algorithm.
+              //r1 < r2 returns -1 = you move the number to the front of the array by one index.
+              //r2 > r2 returns 1 = you move the number to the back of the array by one index.
+              //If they are equal nothing happens and it continues.
+              //The boolean sortByHigh is triggered indicating that the user want to sort by highest rated movies and thus reverse the array after it has been sorted.
               //if the boolean is not triggered the array is sorted and and displayed with the lowest rated movie first.
-             
+
               let compareNumbers = (a, b) =>  {
               	var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
               	var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
@@ -362,8 +423,8 @@ const eddieMovieDatabase = (() => {
         		}
         	}
         	if (noMoviesFound) {
-        			eddieMovieDatabase.noMovieByThisYear();
-        		}
+        		eddieMovieDatabase.noMovieByThisYear();
+        	}
         },
         //Function that populates the dropdown menu on the edit movie interface.
         populateEditDropDown: () => {
@@ -428,16 +489,16 @@ const eddieMovieDatabase = (() => {
              //Loop through the array of genres for the movie choosen established from the previews for loop.
              //If the Genre chosen in the dropdown (genreToRemove) is a match in the array of genres for the movie
              //that match will be removed with the help of the splice method.
-        	for (var x = 0; x < currentMovie.genres.length; x++) {
-        		if (genreToRemove === currentMovie.genres[x]) {
-        			currentMovie.genres.splice(x,1);
-        		}
-        	}
-        	eddieMovieDatabase.showMoviesOnHTML();
-        },
-        editMovieCover: () => {
+             for (var x = 0; x < currentMovie.genres.length; x++) {
+             	if (genreToRemove === currentMovie.genres[x]) {
+             		currentMovie.genres.splice(x,1);
+             	}
+             }
+             eddieMovieDatabase.showMoviesOnHTML();
+         },
+         editMovieCover: () => {
         	//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
-             let selectedMovie = document.getElementById("selectedMovieTitle").value;
+        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
              //URL input field where you add the new poster.
              let editCover = document.getElementById("editNewCover").value;
              //Check if the input field is populated or not.
@@ -450,12 +511,12 @@ const eddieMovieDatabase = (() => {
              	//and change the current cover picture for the new one.
              	for (var i = 0; i < movies.length; i++) {
              		if (selectedMovie === movies[i].title) {
-                      movies[i].cover = editCover;
+             			movies[i].cover = editCover;
              		}
              	}
              }
              eddieMovieDatabase.showMoviesOnHTML();
-        },
+         },
         //Function that allows you to rate a movie in the database.
         rateMovie: () => {
         	//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
