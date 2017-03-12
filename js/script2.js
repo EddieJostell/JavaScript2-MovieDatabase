@@ -267,7 +267,10 @@ const eddieMovieDatabase = (() => {
 		//Function that will calculate the medium value of all the ratings that the movies have.
 		movieRateCalculator: (movieArray) => {
 			//Takes in a the rating array from a movie (object).
-			//Loops through the array and 
+			//Loops through the array and add the  index's with each other
+			//and put them into caclRate.
+			//To get the median movie rating value I take the total sum of the looped array
+			//and devided it with the length of the array.
 			let arrayLength = movieArray.length
 			let totalSum = movieArray;
 			let calcRate = 0;
