@@ -1,0 +1,59 @@
+@mixin dark() {
+	background: #485563; 
+	background: -webkit-linear-gradient(to top, #485563 , #29323c); 
+	background: linear-gradient(to top, #485563 , #29323c); 
+	background-repeat: no-repeat;
+	background-color: #485563;
+}
+
+@mixin no-text-decoration() {
+	text-decoration: none;
+}
+
+@mixin webkit-flex() {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+@mixin webkit-flex-wrap() {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+@mixin flex-row() {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
+@mixin flex-column() {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@mixin centerText() {
+	text-align: center;
+}
+
+@mixin ALL-STAR() {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+@mixin responsive() {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+@mixin best-color() {
+	color: red;
+}

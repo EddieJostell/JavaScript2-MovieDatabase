@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway');
+@import "mixins";
+* {
+	@include ALL-STAR;
+}
+
+body, html {
+	@include dark;
+	width: 100%;
+	height: auto;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6, 
+.h1,.h2,.h3,.h4,.h5,.h6 {
+	font-family: "Raleway";
+}
+
+h1 {
+	color: coral;
+	@include centerText;
+	font-size: 2rem;
+}
+
+h2 {
+	@include centerText;
+	color: white;
+	margin: 2rem 0 0 0;
+}
+
+h4 {
+	color: black;
+}
+
+header {
+	@include flex-row;
+}
+
+main {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+/*Sort movie menu class*/
+.movieMenu {
+	margin: 0 0 20px 0;
+}
+
+/*Add movie menu class*/
+.movieForm {
+	margin: 30px 0 0 0;
+
+}
+/*Edit movie menu class*/
+.editMovie {
+	margin: 70px 0 0 0;
+}
+
+/*Sort movie menu class*/
+.sectionSORT {
+	margin: 70px 0 0 0;
+}
+
+.btn-margin {
+	margin: 0 0 70px 0;
+}
+
+.noMovie-margin-color {
+	@include best-color;
+	margin: 75px 0 0 0;
+}
+
+.pt-15{
+	padding-top: 15px !important;
+}
+
+.flexAllForms {
+	@include centerText;
+	@include flex-column;
+
+	label {
+		@include best-color;
+	}
+}
+
+.movieList {
+	@include webkit-flex-wrap;
+}
+
+.movieDIV {
+	height: auto;
+	width: 15rem;
+	margin: 0.5rem 5px 35px 0;
+	display: inline-block;
+	@include webkit-flex;
+	margin-right: 40px;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+	p {
+		color: black;
+		font-size: 1rem;
+		overflow-wrap: break-word;
+	}
+
+	h6 {
+		@include best-color;
+	}
+}
+
+.img-responsive {
+	@include responsive;
+}
