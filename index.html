@@ -4,38 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="css/style.css">  
   <title>EMDB</title>
 </head>
 
 <body>
   <header class="container-fluid">
     <h1 class="text-uppercase">Eddie's Movie Database!</h1>
-   <!-- <a id="allMovies" href="#">All Movies</a>
-   <a id="topRated" href="#">Top Rated</a>
-   <a id="lowRated" href="#">Low Rated</a>  -->
- </header>
- <section class="container-fluid">
-  <div class="row">
-    <aside class="settings col-md-3">
-      <section class="movieMenu col-md-12 flexAllForms">
-        <h1 class="movieMenu">List Movies by:</h1>
-        <button class="h1-color btn btn-outline-danger" id="topRated" href="#">Top Rated</button>
-        <button class="h1-color btn btn-outline-danger" id="lowRated" href="#"> Low Rated</button> 
-        <button class="h1-color btn btn-outline-danger" id="allMovies" href="#"> All Movies</button>
-      </section>
-      <section class="movieForm col-md-12 flexAllForms">
-        <h1 class="movieMenu">Movie Control Panel</h1>
-        <!-- BOOTSTRAP MODAL FADE ADD MOVIE -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#addMovieModal">
-          Add a new movie
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
+  </header>
+  <section class="container-fluid">
+    <div class="row">
+      <aside class="settings col-md-3">
+        <section class="movieMenu col-md-12 flexAllForms">
+          <h1 class="movieMenu">List Movies by:</h1>
+          <button class="btn-margin btn btn-outline-danger" id="topRated" href="#">Top Rated</button>
+          <button class="btn-margin btn btn-outline-danger" id="lowRated" href="#"> Low Rated</button> 
+          <button class="btn-margin btn btn-outline-danger" id="allMovies" href="#"> All Movies</button>
+        </section>
+        <section class="movieForm col-md-12 flexAllForms">
+          <h1 class="movieMenu">Movie Control Panel</h1>
+          <!-- BOOTSTRAP MODAL FADE ADD MOVIE -->
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#addMovieModal">
+            Add a new movie
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
             <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span> -->
           </button>
@@ -155,7 +151,6 @@
 <!-- MODAL FADE EDIT MOVIE END -->
 </section> <!-- End of editMovie -->
 
-
 <section class="sectionSORT col-md-12 flexAllForms">
   <!-- MODAL FADE SORT BY GENRE -->
   <!-- Button trigger modal -->
@@ -211,7 +206,7 @@
 
 <!-- MOVIE LIST FROM DATABASE DYNAMICALLY GENERATED FROM JS  -->
 <section class="movieList col-md-9" id="movieUL">
-
+<!--MOVIES ENTER HERE -->
 </section>
 </div> <!-- class row -->
 </section> <!-- container-fluid -->

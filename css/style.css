@@ -1,171 +1,131 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway');
-
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway");
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body, html {
-	/*background: url(../img/jokercard.jpg) no-repeat center center fixed;*/
-	/*background-color: #e2e1e0;*/
-	background: #485563; 
-	background: -webkit-linear-gradient(to top, #485563 , #29323c); 
-	background: linear-gradient(to top, #485563 , #29323c); 
-	background-repeat: no-repeat;
-	background-color: #485563;
-	width: 100%;
-	height: auto;
-	font-family: 'Open Sans', sans-serif;
+  background: #485563;
+  background: -webkit-linear-gradient(to top, #485563, #29323c);
+  background: linear-gradient(to top, #485563, #29323c);
+  background-repeat: no-repeat;
+  background-color: #485563;
+  width: 100%;
+  height: auto;
+  font-family: 'Open Sans', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6, 
-.h1,.h2,.h3,.h4,.h5,.h6 {
-	font-family: "Raleway";
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Raleway";
 }
-
-header {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-around;
-}
-
-main {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-}
-
 
 h1 {
-	color: coral;
-	text-align: center;
-	font-size: 2rem;
-}
-
-a {
-	color: white;
-	text-align: center;
-	font-size: 2rem;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #00C0C0;
-	text-decoration: none;
-}
-
-.movieMenu {
-	margin: 0 0 20px 0;
-}
-
-.settings {
-	
-}
-
-.movieForm {
-	margin: 30px 0 0 0;
-
-}
-.editMovie {
-	margin: 70px 0 0 0;
-}
-
-.sectionSORT {
-	margin: 70px 0 0 0;
-}
-
-.h1-color {
-	color: #d9534f;
-	text-decoration: none;
-	margin: 0 0 70px 0;
-}
-
-.noMovie-margin-color {
-	color: red;
-	margin: 75px 0 0 0;
-}
-
-.pt-15{
-	padding-top: 15px !important;
-	
-
-}
-
-.sectionSORT label {
-	color: white;
+  color: coral;
+  text-align: center;
+  font-size: 2rem;
 }
 
 h2 {
-	text-align: center;
-	color: white;
-	margin: 2rem 0 0 0;
+  text-align: center;
+  color: white;
+  margin: 2rem 0 0 0;
 }
 
 h4 {
-	color: black;
+  color: black;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/*Sort movie menu class*/
+.movieMenu {
+  margin: 0 0 20px 0;
+}
+
+/*Add movie menu class*/
+.movieForm {
+  margin: 30px 0 0 0;
+}
+
+/*Edit movie menu class*/
+.editMovie {
+  margin: 70px 0 0 0;
+}
+
+/*Sort movie menu class*/
+.sectionSORT {
+  margin: 70px 0 0 0;
+}
+
+.btn-margin {
+  margin: 0 0 70px 0;
+}
+
+.noMovie-margin-color {
+  color: red;
+  margin: 75px 0 0 0;
+}
+
+.pt-15 {
+  padding-top: 15px !important;
 }
 
 .flexAllForms {
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 .flexAllForms label {
-	color: red;
+  color: red;
 }
 
 .movieList {
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-}
-
-#movieUL {
-
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .movieDIV {
-	height: auto;
-	width: 15rem;
-	margin: 0.5rem 5px 35px 0;
-	display: inline-block;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	margin-right: 40px;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  height: auto;
+  width: 15rem;
+  margin: 0.5rem 5px 35px 0;
+  display: inline-block;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 40px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-
 .movieDIV p {
-	color: black;
-	font-size: 1rem;
-	overflow-wrap: break-word;
+  color: black;
+  font-size: 1rem;
+  overflow-wrap: break-word;
 }
-
 .movieDIV h6 {
-	color: red;
-}
-
-.movieDIV img {
-
+  color: red;
 }
 
 .img-responsive {
-	display: block;
-	height: auto;
-	max-width: 100%;
+  display: block;
+  height: auto;
+  max-width: 100%;
 }
 
-
-
-
-
-
-
+/*# sourceMappingURL=style.css.map */

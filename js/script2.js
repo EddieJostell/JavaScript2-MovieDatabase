@@ -255,7 +255,7 @@ const eddieMovieDatabase = (() => {
 			movieUL.innerHTML = "";
 			for (let i = 0; i < movies.length; i++) {
 				let rating = eddieMovieDatabase.movieRateCalculator(movies[i].ratings);
-				let blockofMovies = `<div class="movieDIV card col-md-2">
+				let blockofMovies = `<div class="movieDIV card col-md-2 col-sm-6">
 				<img class="card-img-top img-responsive pt-15" src="${movies[i].cover}">
 				<div class="card-block">
 				<h6 class="card-title">${movies[i].title}</h6>
@@ -275,7 +275,7 @@ const eddieMovieDatabase = (() => {
 			//so it wont double post.
 			for (let i = 0; i < x.length; i++) {
 				let rating = eddieMovieDatabase.movieRateCalculator(x[i].ratings);
-				let blockofMovies = `<div class="movieDIV card col-md-2">
+				let blockofMovies = `<div class="movieDIV card col-md-2 col-sm-6 ">
 				<img class="card-img-top img-responsive pt-15" src="${x[i].cover}">
 				<div class="card-block">
 				<h6 class="card-title">${x[i].title}</h6>
@@ -292,7 +292,7 @@ const eddieMovieDatabase = (() => {
 		showMoviesByGenre: (index) => {
 			let blockofMovies = '';
 			let rating = eddieMovieDatabase.movieRateCalculator(movies[index].ratings);
-			blockofMovies = `<div class="movieDIV card col-md-2">
+			blockofMovies = `<div class="movieDIV card col-md-2 col-sm-6">
 			<img class="card-img-top img-responsive pt-15" src="${movies[index].cover}">
 			<div class="card-block">
 			<h6 class="card-title">${movies[index].title}</h6>
@@ -308,7 +308,7 @@ const eddieMovieDatabase = (() => {
 			let blockofMovies = '';
 			//movieUL.innerHTML = "";
 			let rating = eddieMovieDatabase.movieRateCalculator(movies[year].ratings);
-			blockofMovies = `<div class="movieDIV card col-md-2">
+			blockofMovies = `<div class="movieDIV card col-md-2 col-sm-6">
 			<img class="card-img-top img-responsive pt-15" src="${movies[year].cover}">
 			<div class="card-block">
 			<h6 class="card-title">${movies[year].title}</h6>
