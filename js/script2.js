@@ -356,7 +356,7 @@ const eddieMovieDatabase = (() => {
               //and sort them according to the bubble sort algorithm.
               //r1 < r2 returns -1 = you move the number to the front of the array by one index.
               //r2 > r2 returns 1 = you move the number to the back of the array by one index.
-              //If they are equal nothing happens and it continues.
+              //If they are equal, nothing happens and it continues.
               //The boolean sortByHigh is triggered indicating that the user want to sort by highest rated movies and thus reverse the array after it has been sorted.
               //if the boolean is not triggered the array is sorted and and displayed with the lowest rated movie first.
 
@@ -409,13 +409,18 @@ const eddieMovieDatabase = (() => {
         sortByYear: () => {
         	let txtYear = document.getElementById("sortYear").value;
         	let intYear = parseInt(txtYear);
+        	//Boolean that if true will run the function that displays 
+        	//A message when a year entered has no match in the database.
         	let noMoviesFound = true;
+        	//If no year is stated nothing will happen.
         	if (txtYear === "") {
         		alert("Please enter a year!");
         		return;
         	}
         	movieUL.innerHTML = "";
-        	console.log(movieUL.innerHTML);
+        	//Loop the array of movies and check if
+        	//the year you typed in match a year in the array
+        	//and show the movies with that year.
         	for (var i = 0; i < movies.length; i++) {
         		if (intYear == movies[i].year) {
         			noMoviesFound = false;
