@@ -357,6 +357,7 @@ const eddieMovieDatabase = (() => {
               //r1 < r2 returns -1 = you move the number to the front of the array by one index.
               //r2 > r2 returns 1 = you move the number to the back of the array by one index.
               //If they are equal, nothing happens and it continues.
+              //These steps relocate movies in the movies array depending on what rating they have.
               //The boolean sortByHigh is triggered indicating that the user want to sort by highest rated movies and thus reverse the array after it has been sorted.
               //if the boolean is not triggered the array is sorted and and displayed with the lowest rated movie first.
 
