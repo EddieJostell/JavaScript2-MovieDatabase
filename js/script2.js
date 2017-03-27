@@ -121,7 +121,7 @@ const eddieMovieDatabase = (() => {
 	{
 		title: "Gladiator",
 		year: 2000,
-		cover: "https://www.movieposter.com/posters/archive/main/42/MPW-21199",
+		cover: "https://s-media-cache-ak0.pinimg.com/originals/44/31/bd/4431bd4cc9381ba8fe482e83367f3a49.jpg",
 		genres: ["Action", "Adventure", "Drama"],
 		ratings: [10,10,10,10,10,10,10]
 	},
