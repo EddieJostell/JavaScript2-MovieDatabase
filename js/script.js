@@ -4,7 +4,7 @@
 //Vilket gör att inget är deklarerat i global scope.
 //Väldigt enkelt att koppla funktionerna man skapar till modulen.
 const eddieMovieDatabase = (() => { 
-
+	
 	let movies = [ 
 	{
 		title: "Assassins Creed",
@@ -13,7 +13,7 @@ const eddieMovieDatabase = (() => {
 		genres: ["Action", "Adventure", "Fantasy"],
 		ratings: [0,2,5,8,9,1,3,4,6,3]
 	},
-
+	
 	{
 		title: "Jason Bourne",
 		year: 2016,
@@ -35,7 +35,7 @@ const eddieMovieDatabase = (() => {
 		genres: ["Action", "Adventure", "Sci-Fi"],
 		ratings: [8,9,6,5,7,8,6,7,5,9]
 	},
-
+	
 	{
 		title: "Blade Runner",
 		year: 1982,
@@ -57,7 +57,7 @@ const eddieMovieDatabase = (() => {
 		genres: ["Fantasy", "Horror", "Thriller"],
 		ratings: [9,9,9,9,7,8,6]
 	},
-
+	
 	{
 		title: "The Big Lebowski",
 		year: 1998,
@@ -65,7 +65,7 @@ const eddieMovieDatabase = (() => {
 		genres: ["Comedy", "Crime", "Mystery"],
 		ratings: [9,9,9,9,8,8,7,6,8,5]
 	},
-
+	
 	{
 		title: "Pulp Fiction",
 		year: 1994,
@@ -80,7 +80,7 @@ const eddieMovieDatabase = (() => {
 		genres: ["Drama", "Romance"],
 		ratings: [7,6,8,5,7]
 	}, 
-
+	
 	{
 		title: "Fight Club",
 		year: 1999,
@@ -102,14 +102,14 @@ const eddieMovieDatabase = (() => {
 		genres: ['Action','Adventure','Thriller'],
 		ratings: [6,4,8,9,9,9,9]
 	},
-
+	
 	{
 		title:'Star Wars: Episode VI - Return of the Jedi',
 		year: 1983,
 		cover: "https://s-media-cache-ak0.pinimg.com/736x/82/bb/1a/82bb1a79c74ef439e7a93b5600373cdc.jpg",
 		genres:["Action", "Adventure", "Fantasy"],
 		ratings:[9,10,10,10,9]
-
+		
 	},
 	{
 		title: "Fury",
@@ -189,7 +189,7 @@ const eddieMovieDatabase = (() => {
 		ratings: [7,7,7,7,7,8,8,8,8,8]
 	}
 	];
-
+	
 	return {
 		//Movie constructor
 		//Använde mig av Constructor pattern på min constructor för att 
@@ -204,10 +204,10 @@ const eddieMovieDatabase = (() => {
 			this.ratings = [ratings];
 			this.cover = cover || 'http://placehold.it/600x900?text=' + title;
 		},
-        // Function that just returns the movies in the array.
-        getMovies: () => {
-        	return movies;
-        },
+		// Function that just returns the movies in the array.
+		getMovies: () => {
+			return movies;
+		},
 		//Pushes movies into the movies array when created by the interface.
 		pushMovie: (movie) => {
 			movies.push(movie);
@@ -242,11 +242,11 @@ const eddieMovieDatabase = (() => {
 				eddieMovieDatabase.pushMovie(movieFromHTML);
 				eddieMovieDatabase.showMoviesOnHTML();
 				eddieMovieDatabase.populateEditDropDown();
-
+				
 				let form = document.getElementById("emdb-form");
 				form.reset();
 			}
-
+			
 			
 		},
 		//Creates a div with a movie from the array and shows it on the HTML page.
@@ -270,7 +270,7 @@ const eddieMovieDatabase = (() => {
 		//Function to display the movies when they have been sorted
 		//by high or lowest rating.
 		showSortedMoviesOnHTML: (x) => {
-
+			
 			movieUL.innerHTML = ""; //Clears the container div before it renders
 			//so it wont double post.
 			for (let i = 0; i < x.length; i++) {
@@ -286,7 +286,7 @@ const eddieMovieDatabase = (() => {
 				</div>`;
 				movieUL.innerHTML += blockofMovies;
 			};
-
+			
 		},
 		//Function that prints out on the DOM a specific movie(s) that was searched for by genre.
 		showMoviesByGenre: (index) => {
@@ -318,7 +318,7 @@ const eddieMovieDatabase = (() => {
 			</div>
 			</div>`;
 			movieUL.innerHTML += blockofMovies;
-
+			
 		},
 		//Function that will run if no movie with the year you searched is in the database.
 		noMovieByThisYear: () => {
@@ -347,49 +347,49 @@ const eddieMovieDatabase = (() => {
 		sortByRating: (sortByHigh) => {
 			//Defined new empty array.
 			let sortedArray = [];
-
+			
 			for (var i = 0; i < movies.length; i++) {
 				//Push excisting array into the new array.
 				sortedArray.push(movies[i]);
 			}
-              //Compare function that look at the calculated median rating values of movies in the movies array
-              //and sort them according to the bubble sort algorithm.
-              //r1 < r2 returns -1 = you move the number to the front of the array by one index.
-              //r2 > r2 returns 1 = you move the number to the back of the array by one index.
-              //If they are equal, nothing happens and it continues.
-              //These steps relocate movies in the movies array depending on what rating they have.
-              //The boolean sortByHigh is triggered indicating that the user want to sort by highest rated movies and thus reverse the array after it has been sorted.
-              //if the boolean is not triggered the array is sorted and and displayed with the lowest rated movie first.
-
-              let compareNumbers = (a, b) =>  {
-              	var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
-              	var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
-              	if(r1 < r2) {
-              		return - 1;
-              	}
-              	if (r1 > r2) {
-              		return 1;
-              	}
-              	return 0;
-              }
-              if (sortByHigh) {
-
-              	sortedArray.sort(compareNumbers).reverse();
-              }
-              else {
-              	sortedArray.sort(compareNumbers);
-              }
-              return eddieMovieDatabase.showSortedMoviesOnHTML(sortedArray);   
-          },
-          //Function that checks if you chosen to sort by Highest rating.
-          sortByHighRating: () => {
-          	eddieMovieDatabase.sortByRating(true);
-          },
-         //Function that checks if you chosen to sort by Lowest rating.
-         sortByLowRating: () => {
-         	eddieMovieDatabase.sortByRating(false);
-         },
-
+			//Compare function that look at the calculated median rating values of movies in the movies array
+			//and sort them according to the bubble sort algorithm.
+			//r1 < r2 returns -1 = you move the number to the front of the array by one index.
+			//r2 > r2 returns 1 = you move the number to the back of the array by one index.
+			//If they are equal, nothing happens and it continues.
+			//These steps relocate movies in the movies array depending on what rating they have.
+			//The boolean sortByHigh is triggered indicating that the user want to sort by highest rated movies and thus reverse the array after it has been sorted.
+			//if the boolean is not triggered the array is sorted and and displayed with the lowest rated movie first.
+			
+			let compareNumbers = (a, b) =>  {
+				var r1 = parseFloat(eddieMovieDatabase.movieRateCalculator(a.ratings));
+				var r2 = parseFloat(eddieMovieDatabase.movieRateCalculator(b.ratings));
+				if(r1 < r2) {
+					return - 1;
+				}
+				if (r1 > r2) {
+					return 1;
+				}
+				return 0;
+			}
+			if (sortByHigh) {
+				
+				sortedArray.sort(compareNumbers).reverse();
+			}
+			else {
+				sortedArray.sort(compareNumbers);
+			}
+			return eddieMovieDatabase.showSortedMoviesOnHTML(sortedArray);   
+		},
+		//Function that checks if you chosen to sort by Highest rating.
+		sortByHighRating: () => {
+			eddieMovieDatabase.sortByRating(true);
+		},
+		//Function that checks if you chosen to sort by Lowest rating.
+		sortByLowRating: () => {
+			eddieMovieDatabase.sortByRating(false);
+		},
+		
 		//Function that lets you sort movies by what genres they are classed as.
 		sortByGenres: () => {
 			let drop = document.getElementById("dropDownGenre").value;
@@ -406,169 +406,169 @@ const eddieMovieDatabase = (() => {
 			}
 			
 		},
-        //Function that lets you sort movies by what year the movie had premiered.
-        sortByYear: () => {
-        	let txtYear = document.getElementById("sortYear").value;
-        	let intYear = parseInt(txtYear);
-        	//Boolean that if true will run the function that displays 
-        	//A message when a year entered has no match in the database.
-        	let noMoviesFound = true;
-        	//If no year is stated nothing will happen.
-        	if (txtYear === "") {
-        		alert("Please enter a year!");
-        		return;
-        	}
-        	movieUL.innerHTML = "";
-        	//Loop the array of movies and check if
-        	//the year you typed in match a year in the array
-        	//and show the movies with that year.
-        	for (var i = 0; i < movies.length; i++) {
-        		if (intYear == movies[i].year) {
-        			noMoviesFound = false;
-        			eddieMovieDatabase.showMoviesByYear(i);
-        		}
-        	}
-        	if (noMoviesFound) {
-        		eddieMovieDatabase.noMovieByThisYear();
-        	}
-        },
-        //Function that populates the dropdown menu on the edit movie interface.
-        populateEditDropDown: () => {
-        	let dropDownMovies = eddieMovieDatabase.getMovies();
-        	let edit = document.getElementById("selectedMovieTitle");
-        	for (var i = 0; i < dropDownMovies.length; i++) {
-        		let opt = document.createElement("option");
-        		opt.innerHTML = dropDownMovies[i].title;
-        		opt.value = dropDownMovies[i].title;
-        		edit.appendChild(opt);
-        	}
-
-        },
-        //Function at enables the user to add a genre(s) to a movie.
-        addMovieGenre: () => {
-        	//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
-        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
-        	//dropdown menu to chose a genre from.
-        	let genreToAdd = document.getElementById("dropDownEditGenre").value;
-        	let theMovie;
-        	//Loop through the movie array check if the movie selected in the dropdown match a movie in the array.
-        	//If it does add the index of the movie chosen to the variable theMovie.
-        	for (var i = 0; i < movies.length; i++) {
-        		if (selectedMovie === movies[i].title) {
-        			theMovie = movies[i];
-        		}
-        	}
-        	//If the genre you want to add is allready in the genre array on the movie object
-        	//it wont be added a second time.
-        	for (let i = 0; i < theMovie.genres.length; i++) {
-        		if (genreToAdd === theMovie.genres[i]){
-        			return;
-        		}
-        	}
-        	//If no genre has been choosen nothing will happen.
-        	if (genreToAdd === "") {
-        		alert("Please choose a genre!");
-        		return;
-        	}
-        	//Push the genre to the array of genres on the move choosen
-        	//and show it on the HTML.
-        	else {
-        		theMovie.genres.push(genreToAdd);
-        		eddieMovieDatabase.showMoviesOnHTML();
-        	}
-
-        },
-        //Function that enables the user to remove a genre(s) on a specific movie.
-        removeMovieGenre: () => {
-        	//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
-        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
-        	//dropdown menu to chose a genre from.
-        	let genreToRemove = document.getElementById("dropDownEditGenre").value;
-        	let currentMovie;
-        	//loop through the movie array and makes a check vs the dropdown menu for a match on the title
-        	//if its a match it get that movie (object) and put it into the variable currentMovie.
-        	for (var i = 0; i < movies.length; i++) {
-        		if (selectedMovie === movies[i].title) {
-        			currentMovie = movies[i];
-        		}
-        	}
-             //Loop through the array of genres for the movie choosen established from the previews for loop.
-             //If the Genre chosen in the dropdown (genreToRemove) is a match in the array of genres for the movie
-             //that match will be removed with the help of the splice method.
-             for (var x = 0; x < currentMovie.genres.length; x++) {
-             	if (genreToRemove === currentMovie.genres[x]) {
-             		currentMovie.genres.splice(x,1);
-             	}
-             }
-             eddieMovieDatabase.showMoviesOnHTML();
-         },
-         editMovieCover: () => {
-        	//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
-        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
-             //URL input field where you add the new poster.
-             let editCover = document.getElementById("editNewCover").value;
-             //Check if the input field is populated or not.
-             if (editCover === "") {
-             	alert("You need to add a URL!");
-             	return;
-             }
-             else {
-             	//Loop the movie array for a match to the dropdown menu choice
-             	//and change the current cover picture for the new one.
-             	for (var i = 0; i < movies.length; i++) {
-             		if (selectedMovie === movies[i].title) {
-             			movies[i].cover = editCover;
-             		}
-             	}
-             }
-             eddieMovieDatabase.showMoviesOnHTML();
-         },
-        //Function that allows you to rate a movie in the database.
-        rateMovie: () => {
-        	//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
-        	let selectedMovie = document.getElementById("selectedMovieTitle").value;
-        	//addedRate dropdown menu to chose a number to rate a movie with.
-        	let addedRate = document.getElementById("edRatings").value;
-        	let intRate = parseInt(addedRate);
-        	//If no number has been chosen you are reminded that you need to choose one.
-        	if (addedRate === "") {
-        		alert("Please choose a number!");
-        		return;
-        	}
-        	//If you have chosen a number the loop will go through the array of movies and check 
-        	//if the selected movie in the drop down menu is equal to a movie in the array
-        	//and push the selected number into the ratings array for the specified movie.
-        	else {
-        		for (var i = 0; i < movies.length; i++) {
-        			if (selectedMovie === movies[i].title) {
-        				movies[i].ratings.push(intRate);
-        			}
-        		}
-        	}
-        	eddieMovieDatabase.showMoviesOnHTML();
-        },
-        //Function that activate all eventListeners on the webpage.
-        registerEventHandlers: () => {
-        	document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
-        	document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
-        	document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
-        	document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
-        	document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
-        	document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
-        	document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
-        	document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
-        	document.getElementById("btnEditCover").addEventListener("click", eddieMovieDatabase.editMovieCover);
-        	document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.rateMovie);
-        },
-        //Self-invoking function that will load the DOM content and activate all the eventListeners.
-        initialize: (() => {
-        	document.addEventListener('DOMContentLoaded', () => {
-        		eddieMovieDatabase.showMoviesOnHTML();
-        		eddieMovieDatabase.populateEditDropDown();
-        		eddieMovieDatabase.registerEventHandlers();
-        		
-        	});
-        })()
-    };
+		//Function that lets you sort movies by what year the movie had premiered.
+		sortByYear: () => {
+			let txtYear = document.getElementById("sortYear").value;
+			let intYear = parseInt(txtYear);
+			//Boolean that if true will run the function that displays 
+			//A message when a year entered has no match in the database.
+			let noMoviesFound = true;
+			//If no year is stated nothing will happen.
+			if (txtYear === "") {
+				alert("Please enter a year!");
+				return;
+			}
+			movieUL.innerHTML = "";
+			//Loop the array of movies and check if
+			//the year you typed in match a year in the array
+			//and show the movies with that year.
+			for (var i = 0; i < movies.length; i++) {
+				if (intYear == movies[i].year) {
+					noMoviesFound = false;
+					eddieMovieDatabase.showMoviesByYear(i);
+				}
+			}
+			if (noMoviesFound) {
+				eddieMovieDatabase.noMovieByThisYear();
+			}
+		},
+		//Function that populates the dropdown menu on the edit movie interface.
+		populateEditDropDown: () => {
+			let dropDownMovies = eddieMovieDatabase.getMovies();
+			let edit = document.getElementById("selectedMovieTitle");
+			for (var i = 0; i < dropDownMovies.length; i++) {
+				let opt = document.createElement("option");
+				opt.innerHTML = dropDownMovies[i].title;
+				opt.value = dropDownMovies[i].title;
+				edit.appendChild(opt);
+			}
+			
+		},
+		//Function at enables the user to add a genre(s) to a movie.
+		addMovieGenre: () => {
+			//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
+			let selectedMovie = document.getElementById("selectedMovieTitle").value;
+			//dropdown menu to chose a genre from.
+			let genreToAdd = document.getElementById("dropDownEditGenre").value;
+			let theMovie;
+			//Loop through the movie array check if the movie selected in the dropdown match a movie in the array.
+			//If it does add the index of the movie chosen to the variable theMovie.
+			for (var i = 0; i < movies.length; i++) {
+				if (selectedMovie === movies[i].title) {
+					theMovie = movies[i];
+				}
+			}
+			//If the genre you want to add is allready in the genre array on the movie object
+			//it wont be added a second time.
+			for (let i = 0; i < theMovie.genres.length; i++) {
+				if (genreToAdd === theMovie.genres[i]){
+					return;
+				}
+			}
+			//If no genre has been choosen nothing will happen.
+			if (genreToAdd === "") {
+				alert("Please choose a genre!");
+				return;
+			}
+			//Push the genre to the array of genres on the move choosen
+			//and show it on the HTML.
+			else {
+				theMovie.genres.push(genreToAdd);
+				eddieMovieDatabase.showMoviesOnHTML();
+			}
+			
+		},
+		//Function that enables the user to remove a genre(s) on a specific movie.
+		removeMovieGenre: () => {
+			//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
+			let selectedMovie = document.getElementById("selectedMovieTitle").value;
+			//dropdown menu to chose a genre from.
+			let genreToRemove = document.getElementById("dropDownEditGenre").value;
+			let currentMovie;
+			//loop through the movie array and makes a check vs the dropdown menu for a match on the title
+			//if its a match it get that movie (object) and put it into the variable currentMovie.
+			for (var i = 0; i < movies.length; i++) {
+				if (selectedMovie === movies[i].title) {
+					currentMovie = movies[i];
+				}
+			}
+			//Loop through the array of genres for the movie choosen established from the previews for loop.
+			//If the Genre chosen in the dropdown (genreToRemove) is a match in the array of genres for the movie
+			//that match will be removed with the help of the splice method.
+			for (var x = 0; x < currentMovie.genres.length; x++) {
+				if (genreToRemove === currentMovie.genres[x]) {
+					currentMovie.genres.splice(x,1);
+				}
+			}
+			eddieMovieDatabase.showMoviesOnHTML();
+		},
+		editMovieCover: () => {
+			//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
+			let selectedMovie = document.getElementById("selectedMovieTitle").value;
+			//URL input field where you add the new poster.
+			let editCover = document.getElementById("editNewCover").value;
+			//Check if the input field is populated or not.
+			if (editCover === "") {
+				alert("You need to add a URL!");
+				return;
+			}
+			else {
+				//Loop the movie array for a match to the dropdown menu choice
+				//and change the current cover picture for the new one.
+				for (var i = 0; i < movies.length; i++) {
+					if (selectedMovie === movies[i].title) {
+						movies[i].cover = editCover;
+					}
+				}
+			}
+			eddieMovieDatabase.showMoviesOnHTML();
+		},
+		//Function that allows you to rate a movie in the database.
+		rateMovie: () => {
+			//selectedMovie is a variable that contains the dropdown menu that is used to chose a movie to edit.
+			let selectedMovie = document.getElementById("selectedMovieTitle").value;
+			//addedRate dropdown menu to chose a number to rate a movie with.
+			let addedRate = document.getElementById("edRatings").value;
+			let intRate = parseInt(addedRate);
+			//If no number has been chosen you are reminded that you need to choose one.
+			if (addedRate === "") {
+				alert("Please choose a number!");
+				return;
+			}
+			//If you have chosen a number the loop will go through the array of movies and check 
+			//if the selected movie in the drop down menu is equal to a movie in the array
+			//and push the selected number into the ratings array for the specified movie.
+			else {
+				for (var i = 0; i < movies.length; i++) {
+					if (selectedMovie === movies[i].title) {
+						movies[i].ratings.push(intRate);
+					}
+				}
+			}
+			eddieMovieDatabase.showMoviesOnHTML();
+		},
+		//Function that activate all eventListeners on the webpage.
+		registerEventHandlers: () => {
+			document.getElementById("btnAdd").addEventListener("click", eddieMovieDatabase.addMovieFromHTML);
+			document.getElementById("allMovies").addEventListener("click", eddieMovieDatabase.showMoviesOnHTML);
+			document.getElementById("dropDownGenre").addEventListener("change", eddieMovieDatabase.sortByGenres);
+			document.getElementById("btnSortYear").addEventListener("click", eddieMovieDatabase.sortByYear);
+			document.getElementById("topRated").addEventListener("click", eddieMovieDatabase.sortByHighRating);
+			document.getElementById("lowRated").addEventListener("click", eddieMovieDatabase.sortByLowRating);
+			document.getElementById("btnAddGenre").addEventListener("click", eddieMovieDatabase.addMovieGenre);
+			document.getElementById("btnDeleteGenre").addEventListener("click", eddieMovieDatabase.removeMovieGenre);
+			document.getElementById("btnEditCover").addEventListener("click", eddieMovieDatabase.editMovieCover);
+			document.getElementById("btnRate").addEventListener("click", eddieMovieDatabase.rateMovie);
+		},
+		//Self-invoking function that will load the DOM content and activate all the eventListeners.
+		initialize: (() => {
+			document.addEventListener('DOMContentLoaded', () => {
+				eddieMovieDatabase.showMoviesOnHTML();
+				eddieMovieDatabase.populateEditDropDown();
+				eddieMovieDatabase.registerEventHandlers();
+				
+			});
+		})()
+	};
 })();
 //console.log(eddieMovieDatabase.getMovies());
